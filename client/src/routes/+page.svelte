@@ -6,7 +6,7 @@
   const { metadata, markdown: Markdown, sidebar: Sidebar } = data;
 </script>
 
-<div class="flex gap-8">
+<section class="flex gap-8 py-4">
   <article class="prose">
     <Markdown/>
   </article>
@@ -14,4 +14,4 @@
   <aside class="prose">
     <Sidebar/>
   </aside>
-</div>
+</section>
