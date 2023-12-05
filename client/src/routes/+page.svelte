@@ -1,17 +1,20 @@
 <script>
   export let data;
 
-  console.log({data})
-
-  const { metadata, markdown: Markdown, sidebar: Sidebar } = data;
+  const { metadata, markdown: Markdown } = data;
 </script>
 
-<section class="flex gap-8 py-4">
+<section class="flex gap-8 py-4 justify-evenly">
   <article class="prose">
     <Markdown/>
   </article>
 
-  <aside class="prose">
-    <Sidebar/>
+  <aside class="flex flex-col items-center">
+    <a href="https://nsfcivicinnovation.org">
+      <img src="/images/civic.png" alt="Civic Innovation Challenge logo">
+    </a>
+    <a href="https://www.nsf.gov">
+      <img src="/images/nsf.png" alt="NSF logo">
+    </a>
   </aside>
 </section>

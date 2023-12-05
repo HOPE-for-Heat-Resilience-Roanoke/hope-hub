@@ -10,23 +10,14 @@
     mx-auto px-4 h-24"
   >
     <a href="/"> <img class="h-24" src="/images/logo.png" alt="HOPE for Heat Resilience Logo"/> </a>
-<!--
-    <div class="flex space-x-1 items-center">
-      <DarkmodeButton />
 
-      <IconLink
-        href="https://www.youtube.com/@joseanmartinez/featured"
-        target="_blank"
-      >
-        <YoutubeIcon class="w-8 h-8 fill-current" />
-      </IconLink>
-      <IconLink
-        href="https://github.com/josean-dev"
-        target="_blank"
-      >
-        <GithubIcon class="w-8 h-8 fill-current" />
-      </IconLink>
+    <div class="flex space-x-1 items-center">
+      <a href="/">home</a>
+      <a href="/news">news</a>
+      <a href="/about">about</a>
+      <a href="/people">people</a>
+      <a href="/hub">Digital Hub</a>
     </div>
--->
+
   </nav>
 </header>
