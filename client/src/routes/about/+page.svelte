@@ -23,7 +23,7 @@
 </script>
 
 <section class="flex overflow-hidden">
-  <article class="prose overflow-scroll pt-4 pr-2 pb-20">
+  <article class="prose overflow-scroll pt-4 px-8 md:px-2 pb-20">
     {#each sections as {metadata, markdown: MarkdownComponent}}
         <h2 
           id={metadata.id}
@@ -36,7 +36,7 @@
     {/each}
   </article>
 
-  <aside>
+  <aside class="p-4 hidden md:block">
     <nav>
       <ul>
       {#each sections as {metadata}}

@@ -36,15 +36,15 @@
 </script>
 
 <div style="height: calc(100vh - 6rem);" class="flex overflow-hidden">
-  <article class="prose overflow-scroll pt-4 px-4 pb-20">
+  <article class="prose overflow-scroll pt-4 md:px-4 px-8 pb-20">
     <h2
       id="leadership"
       use:inview
       on:inview_change={(e) => handleInView(e, "Leadership")}
     >Leadership</h2>
       {#each leadership as {name, bio, image}}
-        <section class="flex items-center">
-          <img class="px-4" src="{image}" alt="{name}">
+        <section class="flex flex-col-reverse md:flex-row md:odd:flex-row-reverse items-center">
+          <img class="px-4 min-w-fit" src="{image}" alt="{name}">
           <div class="px-4">
             <h4>{name}</h4>
             <p>{bio}</p>
@@ -71,7 +71,7 @@
       <CityMarkdown/>
   </article>
 
-  <aside>
+  <aside class="p-4 hidden md:block">
     <nav>
       <ul>
       {#each sections as metadata}
@@ -88,13 +88,3 @@
     </nav>
   </aside>
 </div>
-
-<style>
-  section {
-    flex-direction: row;
-  }
-
-  section:nth-child(odd) {
-    flex-direction: row-reverse;
-  }
-</style>
