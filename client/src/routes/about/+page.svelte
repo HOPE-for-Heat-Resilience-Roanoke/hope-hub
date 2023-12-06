@@ -2,7 +2,6 @@
   import { inview } from 'svelte-inview';
 
   export let data;
-  console.log({data});
 
   const sections = data.sections;
 

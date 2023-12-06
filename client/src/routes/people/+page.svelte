@@ -1,16 +1,47 @@
 <script>
+  import { inview } from 'svelte-inview';
+
   export let data;
-  console.log({data});
 
   const leadership = data.leadership.leadership;
   const nonprofits = data.nonprofits.partners;
   const {city: CityMarkdown} = data;
+
+  let currentTitle = "";
+
+  function handleInView(e, newTitle) {
+    if (e.detail.inView) {
+      currentTitle = newTitle;
+    }
+  }
+
+  function scrollTo(elementId) {
+    const el = document.querySelector(`#${elementId}`);
+    if (!el) return;
+    el.scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+
+  const sections = [{
+    title: "Leadership",
+    id: "leadership"
+  }, {
+    title: "Nonprofit Partners",
+    id: "nonprofits"
+  }, {
+    title: "City Partners",
+    id: "city"
+  }];
 </script>
 
 <div style="height: calc(100vh - 6rem);" class="flex overflow-hidden">
-  <article class="prose overflow-scroll pt-4 pr-2 pb-20">
-    <h2>Leadership</h2>
-    <div>
+  <article class="prose overflow-scroll pt-4 px-4 pb-20">
+    <h2
+      id="leadership"
+      use:inview
+      on:inview_change={(e) => handleInView(e, "Leadership")}
+    >Leadership</h2>
       {#each leadership as {name, bio, image}}
         <section class="flex items-center">
           <img class="px-4" src="{image}" alt="{name}">
@@ -20,9 +51,11 @@
           </div>
         </section>
       {/each}
-    </div>
-    <div>
-      <h3>Nonprofit Partners</h3>
+      <h2
+        id="nonprofits"
+        use:inview
+        on:inview_change={(e) => handleInView(e, "Nonprofit Partners")}
+      >Nonprofit Partners</h2>
       <div class="flex gap-4">
         {#each nonprofits as {src, alt, href}}
           <a {href}>
@@ -30,15 +63,29 @@
           </a>
         {/each}
       </div>
-    </div>
-    <div>
-      <h3>City Partners</h3>
+      <h2
+        id="city"
+        use:inview
+        on:inview_change={(e) => handleInView(e, "City Partners")}
+      >City Partners</h2>
       <CityMarkdown/>
-    </div>
   </article>
 
   <aside>
-    Here is an aside
+    <nav>
+      <ul>
+      {#each sections as metadata}
+        <li class:font-bold={currentTitle == metadata.title}>
+          <a 
+            href="#{metadata.id}"
+            on:click|preventDefault={() => scrollTo(metadata.id)}
+          >
+            {metadata.title}
+          </a>
+        </li>
+      {/each}
+      </ul>
+    </nav>
   </aside>
 </div>
 
