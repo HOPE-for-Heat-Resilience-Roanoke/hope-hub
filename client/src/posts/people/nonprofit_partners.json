@@ -1,0 +1,27 @@
+{
+  "partners": [{
+    "src": "/images/people/partners/partners-1.png",
+    "alt": "Community Arts Reach",
+    "href": "https://artsreach-community.org/"
+  }, {
+    "src": "/images/people/partners/partners-2.png",
+    "alt": "",
+    "href": "#"
+  }, {
+    "src": "/images/people/partners/partners-3.png",
+    "alt": "",
+    "href": "#"
+  }, {
+    "src": "/images/people/partners/partners-4.png",
+    "alt": "",
+    "href": "#"
+  }, {
+    "src": "/images/people/partners/partners-5.png",
+    "alt": "",
+    "href": "#"
+  }, {
+    "src": "/images/people/partners/partners-6.png",
+    "alt": "",
+    "href": "#"
+  }]
+}

@@ -4,7 +4,7 @@
   const { metadata, markdown: Markdown } = data;
 </script>
 
-<section class="flex gap-8 py-4 justify-evenly">
+<section class="flex gap-8 py-4 pt-8 justify-evenly">
   <article class="prose">
     <Markdown/>
   </article>
@@ -17,4 +17,8 @@
       <img src="/images/nsf.png" alt="NSF logo">
     </a>
   </aside>
+</section>
+
+<section class="pb-20">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/N5xTqLFCmVs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </section>

@@ -9,4 +9,4 @@ id: approach
 
 The project aims to create social and digital infrastructures for community resilience to extreme heat through deploying youth technology, arts, and urban planning programs in partnership with city government and existing community development and faith organizations.
 
-
+![Bottom-up approach to urban planning flow chart](/images/flow-chart.png)
