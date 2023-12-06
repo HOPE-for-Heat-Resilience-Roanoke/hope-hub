@@ -15,7 +15,8 @@
     }
   }
 
-  function scrollTo(elementId) {
+  function scrollTo(elementId, title) {
+    currentTitle = title;
     const el = document.querySelector(`#${elementId}`);
     if (!el) return;
     el.scrollIntoView({
@@ -39,11 +40,13 @@
   <article class="prose overflow-scroll pt-4 md:px-4 px-8 pb-20">
     <h2
       id="leadership"
-      use:inview
-      on:inview_change={(e) => handleInView(e, "Leadership")}
     >Leadership</h2>
       {#each leadership as {name, bio, image}}
-        <section class="flex flex-col-reverse md:flex-row md:odd:flex-row-reverse items-center">
+        <section 
+            use:inview
+            on:enter={(e) => handleInView(e, "Leadership")}
+            class="flex flex-col-reverse md:flex-row md:odd:flex-row-reverse items-center"
+        >
           <img class="px-4 min-w-fit" src="{image}" alt="{name}">
           <div class="px-4">
             <h4>{name}</h4>
@@ -54,7 +57,7 @@
       <h2
         id="nonprofits"
         use:inview
-        on:inview_change={(e) => handleInView(e, "Nonprofit Partners")}
+        on:enter={(e) => handleInView(e, "Nonprofit Partners")}
       >Nonprofit Partners</h2>
       <div class="flex gap-4">
         {#each nonprofits as {src, alt, href}}
@@ -66,7 +69,7 @@
       <h2
         id="city"
         use:inview
-        on:inview_change={(e) => handleInView(e, "City Partners")}
+        on:enter={(e) => handleInView(e, "City Partners")}
       >City Partners</h2>
       <CityMarkdown/>
   </article>
@@ -78,7 +81,7 @@
         <li class:font-bold={currentTitle == metadata.title}>
           <a 
             href="#{metadata.id}"
-            on:click|preventDefault={() => scrollTo(metadata.id)}
+            on:click|preventDefault={() => scrollTo(metadata.id, metadata.title)}
           >
             {metadata.title}
           </a>

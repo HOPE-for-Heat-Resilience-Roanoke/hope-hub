@@ -8,9 +8,9 @@
   let currentTitle = "";
 
   function handleInView(e, newTitle) {
-    if (e.detail.inView) {
+    // if (e.detail.inView) {
       currentTitle = newTitle;
-    }
+    // }
   }
 
   function scrollTo(elementId) {
@@ -27,12 +27,15 @@
     {#each sections as {metadata, markdown: MarkdownComponent}}
         <h2 
           id={metadata.id}
-          use:inview
-          on:inview_change={(e) => handleInView(e, metadata.title)}
         >
           {metadata.title}
         </h2>
-        <MarkdownComponent/>
+        <section
+          use:inview
+          on:enter={(e) => handleInView(e, metadata.title)}
+        >
+          <MarkdownComponent/>
+        </section>
     {/each}
   </article>
 
@@ -55,7 +58,7 @@
 </section>
 
 <style>
-  section {
+  section.overflow-hidden {
     height: calc(100vh - 6rem);
   }
 </style>
