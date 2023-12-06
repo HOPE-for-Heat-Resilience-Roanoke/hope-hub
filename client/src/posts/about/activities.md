@@ -3,8 +3,6 @@ title: Project Activities
 id: activities
 ---
 
-## Project Activities
-
 The following are the main activities of the H.O.P.E. for Heat Resilience project:
 
 - Piloting and evaluating a new method, The Roanoke Method, of resilience planning, which is a grassroots process of deep community engagement that starts with youth and the organizations that work with youth in the City of Roanoke, and takes into account trauma-informed, healing centered principles

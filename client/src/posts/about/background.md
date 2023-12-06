@@ -3,8 +3,6 @@ title: Background
 id: background
 ---
 
-## Background
-
 Climate change is increasing the frequency, intensity, and duration of heat waves and is expected to increase their impact on human health and the economy. Community planning interventions can help communities stay cool. Community planning interventions can include:
 
 - Community-recognized resilience hubs - which might provide safe air conditioned spaces to stay, access to water, and shade
