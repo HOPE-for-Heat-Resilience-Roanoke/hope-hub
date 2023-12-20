@@ -4,6 +4,7 @@
   export let data;
 
   const leadership = data.leadership.leadership;
+  const students = data.students.students;
   const nonprofits = data.nonprofits.partners;
   const {city: CityMarkdown} = data;
 
@@ -28,6 +29,9 @@
     title: "Leadership",
     id: "leadership"
   }, {
+    title: "HOPE Students",
+    id: "students"
+  }, {
     title: "Nonprofit Partners",
     id: "nonprofits"
   }, {
@@ -45,6 +49,22 @@
         <section 
             use:inview
             on:enter={(e) => handleInView(e, "Leadership")}
+            class="flex flex-col-reverse md:flex-row md:odd:flex-row-reverse items-center"
+        >
+          <img class="px-4 min-w-fit" src="{image}" alt="{name}">
+          <div class="px-4">
+            <h4>{name}</h4>
+            <p>{bio}</p>
+          </div>
+        </section>
+      {/each}
+    <h2
+      id="students"
+    >HOPE Students</h2>
+      {#each students as {name, bio, image}}
+        <section 
+            use:inview
+            on:enter={(e) => handleInView(e, "HOPE Students")}
             class="flex flex-col-reverse md:flex-row md:odd:flex-row-reverse items-center"
         >
           <img class="px-4 min-w-fit" src="{image}" alt="{name}">

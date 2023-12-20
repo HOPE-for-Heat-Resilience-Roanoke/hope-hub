@@ -1,0 +1,35 @@
+{
+  "students": [{
+    "name": "Nas Wade",
+    "bio": "My name is Anazj Wade. I'm in 9th grade. I aspire to be an artist. I’m very family-oriented. I like to read. I'm creative and want to help others as much as possible. I'm very determined and won’t stop until my goals are completed. Interest: 3 things that interest Music Sports Creating videos",
+    "image": "/images/people/students/holjb.png"
+  }, {
+    "name": "Daniel Horn",
+    "bio": "I’m a student at William Fleming, I like to play basketball & track and draw. I also enjoy challenging myself to new things in order to become a better version of myself. Interest- - Engineering, Art, Sports (Track & Field/ Basketball)",
+    "image": "/images/people/students/lojbv.png"
+  }, {
+    "name": "Deandre Dudley",
+    "bio": "My name is Deandre Dudley. I like to go on walks, watch TV shows, play video games, exercise and spend time with my family. I hope to start a successful business one day that will hopefully set me on the right career path. Three things that interest me are: 1. Getting the right education. 2. Bettering myself mentally and mentally physically 3. Just seeing more of life and the world.",
+    "image": "/images/people/students/fjbec.png"
+  }, {
+    "name": "Tre Anderson",
+    "bio": "",
+    "image": "/images/people/nopic.png"
+  }, {
+    "name": "Xavier Banks",
+    "bio": "I'm Xavier Nathanial Banks-Hardeman from Salem, Virginia. I attended East Salem Elementary School, Andrew Lewis Middle School, and Salem High School. I started drawing in Elementary School and got into roleplaying and writing in middle school. In high school, I discovered hip-hop and began writing songs and poetry. Art has always been a significant influence on me. My ultimate goal is to be at peace, and my current goal is to become an artist. Three Things of Interest - Drawing, Creative Writing, Music, and Songwriting.",
+    "image": "/images/people/students/aigpb.png"
+  }, {
+    "name": "Kennedy Helm",
+    "bio": "Kennedy is a sophomore at Northside High School. She plays softball, is a part of the VA DECA program, and member of a community youth choir. Kennedy enjoys doing her own hair, as well as clients. She has a great interest in beauty, loves to cheer, and hopes to begin her career and private practice as a prosthodontist.",
+    "image": "/images/people/students/wjwci.png"
+  }, {
+    "name": "Milana Correa-Jackson",
+    "bio": "Milana is a freshman at William Fleming High School. She enjoys singing, doing her own hair as well as clients, and member of a community youth choir. She loves all facets of fashion and beauty. Milana plans to graduate high school a year earlier and begin her post-high school journey of her choosing in Atlanta, GA.",
+    "image": "/images/people/students/bjber.png"
+  }, {
+    "name": "Angelina Williams",
+    "bio": "Angelina Jamia Williams, also known as Lina, was born on October 3, 2008 in Philadelphia, Pennsylvania. She moved to Roanoke at the age of three and attended Rugby Head Start before transitioning to kindergarten at Preston Park Elementary by the age of four. Lina is currently a sophomore at Fleming High School and plans to attend college to become a pediatrician. She enjoys supporting and encouraging others and was the president of the FBLA club in eighth grade, where she organized a COVID supplies drive for the elderly and a turkey basket drive for the homeless. Lina was recently hired by the Roanoke Emergency Services Department to work with EMT units on emergencies after completing the Roanoke City Apprentice Program, Cohort 6. Interests: community activities, loves art, and designs.",
+    "image": "/images/people/students/mjtec.png"
+  }]
+}
