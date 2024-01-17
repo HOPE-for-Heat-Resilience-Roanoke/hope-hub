@@ -5,6 +5,6 @@
 
 <h2 class="font-bold pb-2">{engagement.title}</h2>
 <p>{engagement.description}</p>
-{#each engagement.images as {src, alt}}
+{#each engagement.images as {src, alt} (src)}
   <img class="p-8" src="images/engagements/{src}" {alt} />
 {/each}
