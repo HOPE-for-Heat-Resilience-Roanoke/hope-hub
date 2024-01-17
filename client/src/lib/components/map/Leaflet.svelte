@@ -1,6 +1,9 @@
 <script lang="typescript">
   import { createEventDispatcher, setContext } from 'svelte';
   import * as L from 'leaflet';
+  import markerIconUrl from "../../../../node_modules/leaflet/dist/images/marker-icon.png";
+  import markerIconRetinaUrl from "../../../../node_modules/leaflet/dist/images/marker-icon-2x.png";
+  import markerShadowUrl from "../../../../node_modules/leaflet/dist/images/marker-shadow.png";
   import 'leaflet/dist/leaflet.css';
 
   export let height = '100%';
@@ -41,6 +44,11 @@
         maxZoom: 14,
       }
     ).addTo(map);
+
+    L.Icon.Default.prototype.options.iconUrl = markerIconUrl;
+    L.Icon.Default.prototype.options.iconRetinaUrl = markerIconRetinaUrl;
+    L.Icon.Default.prototype.options.shadowUrl = markerShadowUrl;
+    L.Icon.Default.imagePath = "";
 
     // map.on("moveend", () => {
     //   console.log(map.getBounds())
