@@ -1,0 +1,90 @@
+[
+    {
+        "title": "Art Trees",
+        "description": "Take old campaign signs, prep them with paint and allow the kids to decorate them.  As part of their task, they would think of the “fruits” they would like to gift to their community in the kinds of trees, bushes and attributes like peace and kindness.",
+        "date": "2024-01-15",
+        "relevant_location": "Envison Center, Landsdowne residents",
+        "latitude": 37.2855874,
+        "longitude": -79.983101,
+        "comp_equity": true,
+        "comp_community": true,
+        "comp_nature": true,
+        "comp_environment": true,
+        "conn_past": false,
+        "conn_present": true,
+        "conn_future": true,
+        "images":
+        [
+            {
+                "src": "arttrees/45992682-03F3-47D5-A9E9-30DD43F846FF_1_201_a.jpeg",
+                "alt": ""
+            },
+            {
+                "src": "arttrees/3673C5D9-D178-47EB-87FB-455C0E1E19F3_1_201_a.jpeg",
+                "alt": ""
+            },
+            {
+                "src": "arttrees/428C98E9-5246-4D70-9708-D87605C53E90_1_201_a.jpeg",
+                "alt": ""
+            },
+            {
+                "src": "arttrees/137EF3A6-6000-460F-9D55-C1D329ACF321_1_201_a.jpeg",
+                "alt": ""
+            },
+            {
+                "src": "arttrees/79066519-3131-449A-B531-68DA7003A596_1_201_a.jpeg",
+                "alt": ""
+            },
+            {
+                "src": "arttrees/B37BC6D2-7EB9-42EF-9CE8-08BBE4C89EFF_1_201_a.jpeg",
+                "alt": ""
+            },
+            {
+                "src": "arttrees/C875F44F-0D95-4143-B41F-F7A97A77F7E0_1_201_a.jpeg",
+                "alt": ""
+            }
+        ]
+    },
+    {
+        "title": "El Còndor Pasa I:  Envisioning Fruits",
+        "description": "Talk about tree canopy, show heat maps, tree canopy maps, NW 15-20 degrees hotter than rest of city.  Watch my film on gun violence and tree canopy.   Talk about native trees, bushes.  Questions:  Where does your neighborhood need shade?  If you could put a tree there, what kind of tree would it be?  If you were a tree, what would you look like and what fruit would you give to your community?\r\nCreate Art Trees out of campaign signs.  Kids will paint prepped “trees” and decorate with birds, insects and fruits.",
+        "date": "2023-12-09",
+        "relevant_location": "Eureka Park Installation 1200-1500 block Hanover NW",
+        "latitude": 37.2881377,
+        "longitude": -79.9785619,
+        "comp_equity": true,
+        "comp_community": true,
+        "comp_nature": true,
+        "comp_environment": true,
+        "conn_past": false,
+        "conn_present": true,
+        "conn_future": true,
+        "images":
+        [
+            {
+                "src": "elcondorpasa/Honor_Mrs_McCadden.jpeg",
+                "alt": ""
+            },
+            {
+                "src": "elcondorpasa/Girl_w_leaf.jpeg",
+                "alt": ""
+            },
+            {
+                "src": "elcondorpasa/LandArt_McCadden_Pk.jpeg",
+                "alt": ""
+            },
+            {
+                "src": "elcondorpasa/LoveLeaves.jpeg",
+                "alt": ""
+            },
+            {
+                "src": "elcondorpasa/MCCADDEN_PARK.jpeg",
+                "alt": ""
+            },
+            {
+                "src": "elcondorpasa/McCaDDEN_PK.jpeg",
+                "alt": ""
+            }
+        ]
+    }
+]

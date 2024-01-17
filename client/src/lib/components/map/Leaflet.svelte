@@ -42,6 +42,10 @@
       }
     ).addTo(map);
 
+    // map.on("moveend", () => {
+    //   console.log(map.getBounds())
+    // });
+
     return {
       destroy() {
         if (map) map.remove();
