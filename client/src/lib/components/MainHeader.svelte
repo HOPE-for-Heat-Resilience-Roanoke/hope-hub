@@ -4,7 +4,7 @@
 
 <header
   class="fixed z-10 top-0 inset-x-0 border-b
-    bg-white dark:bg-dark-background dark:border-gray-800"
+    bg-white"
 >
   <nav
     class="flex items-center justify-between max-w-5xl
