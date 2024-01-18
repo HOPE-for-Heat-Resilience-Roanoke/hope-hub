@@ -19,6 +19,7 @@
   function scrollTo(elementId, title) {
     currentTitle = title;
     const el = document.querySelector(`#${elementId}`);
+    window.history.replaceState(undefined, undefined, "#" + elementId);
     if (!el) return;
     el.scrollIntoView({
       behavior: "smooth"
@@ -42,9 +43,10 @@
 
 <div style="height: calc(100vh - 6rem);" class="flex overflow-hidden">
   <article class="prose overflow-scroll pt-4 md:px-4 px-8 pb-20">
+    <a href="#leadership" class="no-underline">
     <h2
       id="leadership"
-    >Leadership</h2>
+    >Leadership</h2></a>
       {#each leadership as {name, bio, image}}
         <section 
             use:inview
@@ -58,9 +60,10 @@
           </div>
         </section>
       {/each}
+    <a href="#students" class="no-underline">
     <h2
       id="students"
-    >HOPE Students</h2>
+    >HOPE Students</h2></a>
       {#each students as {name, bio, image}}
         <section 
             use:inview
@@ -74,11 +77,12 @@
           </div>
         </section>
       {/each}
+      <a href="#nonprofits" class="no-underline">
       <h2
         id="nonprofits"
         use:inview
         on:enter={(e) => handleInView(e, "Nonprofit Partners")}
-      >Nonprofit Partners</h2>
+      >Nonprofit Partners</h2></a>
       <div class="flex gap-4">
         {#each nonprofits as {src, alt, href}}
           <a {href}>
@@ -86,11 +90,12 @@
           </a>
         {/each}
       </div>
+      <a href="#city" class="no-underline">
       <h2
         id="city"
         use:inview
         on:enter={(e) => handleInView(e, "City Partners")}
-      >City Partners</h2>
+      >City Partners</h2></a>
       <CityMarkdown/>
   </article>
 
