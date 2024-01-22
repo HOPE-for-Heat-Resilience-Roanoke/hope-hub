@@ -1,11 +1,11 @@
 import { writable } from 'svelte/store';
 
-export const past = writable(true);
-export const present = writable(true);
-export const future = writable(true);
+export const past = writable(false);
+export const present = writable(false);
+export const future = writable(false);
 
-export const equity = writable(true);
-export const community = writable(true);
-export const nature = writable(true);
-export const environment = writable(true);
+export const equity = writable(false);
+export const community = writable(false);
+export const nature = writable(false);
+export const environment = writable(false);
 
