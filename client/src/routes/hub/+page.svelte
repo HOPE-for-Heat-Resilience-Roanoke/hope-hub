@@ -36,13 +36,13 @@
 
   $: filteredEngagements = engagements.filter((e) => {
     return (
-      (!$past || ($past && e.conn_past)) &&
-      (!$present || ($present && e.conn_present)) &&
-      (!$future || ($future && e.conn_future)) &&
-      (!$equity || ($equity && e.comp_equity)) &&
-      (!$community || ($community && e.comp_community)) &&
-      (!$nature || ($nature && e.comp_nature)) &&
-      (!$environment || ($environment && e.comp_environment))
+      ($past && e.conn_past) ||
+      ($present && e.conn_present) ||
+      ($future && e.conn_future) ||
+      ($equity && e.comp_equity) ||
+      ($community && e.comp_community) ||
+      ($nature && e.comp_nature) ||
+      ($environment && e.comp_environment)
     );
   })
 
