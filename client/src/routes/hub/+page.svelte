@@ -1,7 +1,10 @@
 <script>
   import Leaflet from "$lib/components/map/Leaflet.svelte";
   import Marker from "$lib/components/map/Marker.svelte";
+  import CensusLayer from "$lib/components/map/CensusLayer.svelte";
   import EngagementDetails from "$lib/components/EngagementDetails.svelte";
+  import EngagementFilters from "$lib/components/EngagementFilters.svelte";
+  import CensusBlockDetails from "$lib/components/CensusBlockDetails.svelte";
   import MapFilters from "$lib/components/MapFilters.svelte";
   import {
     past,
@@ -55,6 +58,7 @@
   <section class="md:w-1/2 h-full py-8">
     {#if loaded || document.readyState === 'complete'}
     <Leaflet bind:this={map} bounds={initialBounds}>
+      <CensusLayer />
       {#each filteredEngagements as engagement}
         <Marker
           latLng={[engagement.latitude, engagement.longitude]}
@@ -65,12 +69,14 @@
     {/if}
   </section>
   <section class="md:w-1/2 p-8 overflow-y-scroll">
-    <MapFilters />
+    <EngagementFilters />
     {#if selectedEngagement}
       <EngagementDetails engagement={selectedEngagement} />
     {:else}
       <p class="px-12 text-center">Click a marker on the map to see details of that event</p>
     {/if}
+    <MapFilters />
+    <CensusBlockDetails />
   </section>
 </article>
 
