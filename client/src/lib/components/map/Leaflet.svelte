@@ -35,29 +35,6 @@
       }
     }, 250);
 
-    // L.tileLayer(
-    //   'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-    //   {
-    //     attribution: `&copy;<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>,
-    //       &copy;<a href="https://carto.com/attributions" target="_blank">CARTO</a>`,
-    //     subdomains: 'abcd',
-    //     maxZoom: 14,
-    //   }
-    // ).addTo(map);
-
-    // L.tileLayer(
-    //   'https://api.mapbox.com/v4/dacvt.12qbs19m/{z}/{x}/{y}{r}.png?access_token=pk.eyJ1IjoiZGFjdnQiLCJhIjoiY2o4dWVnczZmMHoxdDJ3cXFya3FzMGRqdSJ9.GxRPCSfZ6lbzjfNBosFwXg',
-    //   {
-
-    //   }
-    // ).addTo(map);
-
-    L.tileLayer(
-      'https://api.mapbox.com/styles/v1/dacvt/clt567ded01bg01qf9qgr741o/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZGFjdnQiLCJhIjoiY2o4dWVnczZmMHoxdDJ3cXFya3FzMGRqdSJ9.GxRPCSfZ6lbzjfNBosFwXg'
-    ).addTo(map);
-
-
-
 
     L.Icon.Default.prototype.options.iconUrl = markerIconUrl;
     L.Icon.Default.prototype.options.iconRetinaUrl = markerIconRetinaUrl;

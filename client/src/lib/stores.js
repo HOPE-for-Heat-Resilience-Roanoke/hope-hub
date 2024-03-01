@@ -9,6 +9,6 @@ export const community = writable(false);
 export const nature = writable(false);
 export const environment = writable(false);
 
-export const showCensus = writable(true);
-export const showHeat = writable(false);
+export const showCensus = writable(false);
+export const showHeat = writable(true);
 export const selectedCensusBlock = writable(null);

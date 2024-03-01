@@ -1,6 +1,7 @@
 <script>
   import Leaflet from "$lib/components/map/Leaflet.svelte";
   import Marker from "$lib/components/map/Marker.svelte";
+  import BaseLayer from "$lib/components/map/BaseLayer.svelte";
   import CensusLayer from "$lib/components/map/CensusLayer.svelte";
   import EngagementDetails from "$lib/components/EngagementDetails.svelte";
   import EngagementFilters from "$lib/components/EngagementFilters.svelte";
@@ -58,6 +59,7 @@
   <section class="md:w-1/2 h-full py-8">
     {#if loaded || document.readyState === 'complete'}
     <Leaflet bind:this={map} bounds={initialBounds}>
+      <BaseLayer />
       <CensusLayer />
       {#each filteredEngagements as engagement}
         <Marker
