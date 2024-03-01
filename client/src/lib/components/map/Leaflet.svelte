@@ -57,6 +57,8 @@
     ).addTo(map);
 
 
+
+
     L.Icon.Default.prototype.options.iconUrl = markerIconUrl;
     L.Icon.Default.prototype.options.iconRetinaUrl = markerIconRetinaUrl;
     L.Icon.Default.prototype.options.shadowUrl = markerShadowUrl;

@@ -10,4 +10,5 @@ export const nature = writable(false);
 export const environment = writable(false);
 
 export const showCensus = writable(true);
+export const showHeat = writable(false);
 export const selectedCensusBlock = writable(null);
