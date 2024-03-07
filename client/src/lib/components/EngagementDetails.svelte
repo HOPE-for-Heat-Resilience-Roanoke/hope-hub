@@ -1,4 +1,6 @@
 <script>
+  import ArtifactDetails from "$lib/components/ArtifactDetails.svelte";
+
   export let engagement;
 </script>
 
@@ -40,8 +42,14 @@
   </div>
 </section>
 
-{#each engagement.images as {src, alt} (src)}
-  <img class="p-8" src="images/engagements/{src}" {alt} />
+{#if engagement.artifacts}
+  <h4 class="font-bold mt-4 mb-2">Selected Artifacts</h4>
+{/if}
+
+{#each engagement.artifacts as artifact (artifact.alt_text)}
+  <ArtifactDetails
+    {artifact}
+  />
 {/each}
 
 <style>
