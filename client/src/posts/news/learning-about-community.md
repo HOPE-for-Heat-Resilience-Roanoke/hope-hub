@@ -11,6 +11,8 @@ youtubeID: "pPjojCIrBkM"
 
 The High School Planner’s program aims to give students the confidence and tools to impact their communities positively. One of the ways we’re going about doing this is by developing their skills to facilitate a park planning exercise in their community. A group of Graduate students from Virginia Tech worked together to create a serious game and refine it with input from the students. The goal is for the players to have to navigate managed conflict and work together to make concessions and come to consensus about the design elements and layout of the park. 
 
+![Students around a table with papers and star shaped markers on it](/images/posts/learning-about-community/atwork.png) 
+
 We start off the game with participants introducing themselves. Then we have them dive into talking about different constituencies using character cards we have made. After that they discuss different design strategies and design elements. 
 
 Once they have discussed the design elements, they have to choose which ones they're going to invest in with limited resources. This is the most important part of the game. It's where they have to work together to find consensus. Once they've done that, they have to work together to design the park using the design elements they decided on.
