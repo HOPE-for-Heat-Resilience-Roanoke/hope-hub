@@ -37,9 +37,7 @@ class ArtifactAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'attribution',
-        'statement',
         'engagement',
-        'alt_text',
         'upload',
     )
     list_filter = ('engagement',)

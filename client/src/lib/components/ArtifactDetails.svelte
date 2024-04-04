@@ -4,10 +4,11 @@
 
 <figure>
   <img src="images/engagements{artifact.upload}" alt="{artifact.alt_text}" />
-  <figcaption class="text-sm">{artifact.alt_text}{#if artifact.attribution}&nbsp;by {artifact.attribution}{/if}</figcaption>
+  <figcaption class="text-sm">{artifact.alt_text}</figcaption>
 </figure>
 
 {#if artifact.statement}  
   <h4 class="my-4">Artist Statement</h4>
-  <p class="my-4">{artifact.statement}</p>
+  <p class="mt-4">{artifact.statement}</p>
+  {#if artifact.attribution}<p class="text-right text-sm mb-4">&mdash; {artifact.attribution}</p>{/if}
 {/if}

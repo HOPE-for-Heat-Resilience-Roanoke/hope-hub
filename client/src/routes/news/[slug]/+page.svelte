@@ -16,4 +16,9 @@
   <p>{metadata.authorLong}</p>
   <small class="mb-4">Published {pubdate}</small>
   <Post />
+  {#if metadata.youtubeID}
+    <section class="pb-20 md:max-w-xl">
+      <iframe width="100%" height="350" src="https://www.youtube.com/embed/{metadata.youtubeID}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </section>
+  {/if}
 </article>
