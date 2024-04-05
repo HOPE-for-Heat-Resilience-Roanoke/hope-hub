@@ -40,7 +40,7 @@
 
   $: showLayer($showCensus);
 
-  fetch("/geo/justice40.geojson")
+  fetch("/geo/justice40_augmented.geojson")
     .then((response) => response.json())
     .then((data) => {
       censusLayer = L.geoJSON(data, {
