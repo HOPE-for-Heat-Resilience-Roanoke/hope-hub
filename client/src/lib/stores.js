@@ -12,3 +12,4 @@ export const environment = writable(false);
 export const showCensus = writable(false);
 export const showHeat = writable(true);
 export const selectedCensusBlock = writable(null);
+export const selectedEngagement = writable(null);

@@ -4,9 +4,9 @@
   import BaseLayer from "$lib/components/map/BaseLayer.svelte";
   import CensusLayer from "$lib/components/map/CensusLayer.svelte";
   import EngagementDetails from "$lib/components/EngagementDetails.svelte";
-  import EngagementFilters from "$lib/components/EngagementFilters.svelte";
-  import CensusBlockDetails from "$lib/components/CensusBlockDetails.svelte";
   import MapFilters from "$lib/components/MapFilters.svelte";
+  import AnalysisControls from "$lib/components/AnalysisControls.svelte";
+  import EngagementControls from "$lib/components/EngagementControls.svelte";
   import {
     past,
     present,
@@ -15,6 +15,7 @@
     community,
     nature,
     environment,
+    selectedEngagement,
   } from "$lib/stores.js";
 
   export let data;
@@ -32,10 +33,9 @@
     }
   }
 
-  let selectedEngagement = undefined;
   function handleClick(engagement) {
     console.log("clicked on", engagement);
-    selectedEngagement = engagement;
+    $selectedEngagement = engagement;
   }
 
   $: filteredEngagements = engagements.filter((e) => {
@@ -71,14 +71,15 @@
     {/if}
   </section>
   <section class="md:w-1/2 p-8 overflow-y-scroll">
-    <EngagementFilters />
-    {#if selectedEngagement}
-      <EngagementDetails engagement={selectedEngagement} />
-    {:else}
-      <p class="px-12 text-center">Click a marker on the map to see details of that event</p>
-    {/if}
-    <MapFilters />
-    <CensusBlockDetails />
+
+    <MapFilters name="Analysis">
+      <AnalysisControls />
+    </MapFilters>
+
+    <MapFilters name="Engagements">
+      <EngagementControls />
+    </MapFilters>
+    
   </section>
 </article>
 
