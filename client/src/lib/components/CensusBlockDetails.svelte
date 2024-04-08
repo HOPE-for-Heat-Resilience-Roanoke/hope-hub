@@ -3,7 +3,7 @@
   import { showCensus, selectedCensusBlock } from "$lib/stores.js";
   import { format } from "d3-format";
 
-  const comma = format(",");
+  const comma = format(",.0f");
   const sigfig2 = format(".1f");
 </script>
 
@@ -29,7 +29,14 @@
       <li>Impervious Public Area: {sigfig2($selectedCensusBlock.impervious_and_gap_area_percent_public_and_gap_public)}%</li>
       <li>Impervious Private Area: {sigfig2($selectedCensusBlock.impervious_and_gap_area_percent_non_public)}%</li>
       <hr class="my-2">
-      <li>Total Tree Cover Area: {sigfig2($selectedCensusBlock.tree_area_percent)}%</li>
+      <li>Impervious Public and Vacant: {comma($selectedCensusBlock.total_impervious_for_public_and_vacant_in_sqfeet)} ft<sup>2</sup></li>
+      <li>Impervious Public and Non-Vacant: {comma($selectedCensusBlock.total_impervious_for_public_and_not_vacant_in_sqfeet)} ft<sup>2</sup></li>
+      <li>Impervious Private and Vacant: {comma($selectedCensusBlock.total_impervious_for_non_public_and_vacant_in_sqfeet)} ft<sup>2</sup></li>
+      <li>Impervious Private and Non-Vacant: {comma($selectedCensusBlock.total_impervious_for_non_public_and_not_vacant_in_sqfeet)} ft<sup>2</sup></li>
+      <hr class="my-2">
+      <li>Total Tree Cover Area: {sigfig2($selectedCensusBlock.tree_area_percent_not_forest + $selectedCensusBlock.tree_area_percent_forest)}%</li>
+      <li>Total Forest Cover: {sigfig2($selectedCensusBlock.tree_area_percent_forest)}%</li>
+      <li>Total Non-Forest Cover: {sigfig2($selectedCensusBlock.tree_area_percent_not_forest)}%</li>
       <li>Tree Cover Public Area: {sigfig2($selectedCensusBlock.tree_area_percent_public_and_gap_public)}%</li>
       <li>Tree Cover Private Area: {sigfig2($selectedCensusBlock.tree_area_percent_non_public)}%</li>
 
