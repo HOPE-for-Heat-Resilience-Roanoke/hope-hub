@@ -4,7 +4,7 @@
   import { format } from "d3-format";
 
   const tempChange = (value) => {
-    return `${sigfig2(Math.abs(value))}ºF ${value < 0 ? "colder" : "hotter"}`;
+    return `${sigfig2(Math.abs(value))}ºF ${value < 0 ? "cooler" : "warmer"}`;
   }
 
   const comma = format(",.0f");
@@ -27,7 +27,7 @@
       <hr class="my-2">
       <li>Park Area: {sigfig2($selectedCensusBlock.park_area_percent)}%</li>
       <li>Heat Average: {sigfig2($selectedCensusBlock.heat_index_mean)}º</li>
-      <li>Deviation from Citywide Heat Average: {tempChange($selectedCensusBlock.heat_index_deviation)}</li>
+      <li>Deviation from Summer Air Temperature: {tempChange($selectedCensusBlock.heat_index_deviation)}</li>
       <hr class="my-2">
       <li>Total Impervious Area: {sigfig2($selectedCensusBlock.impervious_and_gap_area_percent)}%</li>
       <li>Impervious Public Area: {sigfig2($selectedCensusBlock.impervious_and_gap_area_percent_public_and_gap_public)}%</li>
