@@ -3,6 +3,10 @@
   import { showCensus, selectedCensusBlock } from "$lib/stores.js";
   import { format } from "d3-format";
 
+  const tempChange = (value) => {
+    return `${sigfig2(Math.abs(value))}ºF ${value < 0 ? "colder" : "hotter"}`;
+  }
+
   const comma = format(",.0f");
   const sigfig2 = format(".1f");
 </script>
@@ -23,7 +27,7 @@
       <hr class="my-2">
       <li>Park Area: {sigfig2($selectedCensusBlock.park_area_percent)}%</li>
       <li>Heat Average: {sigfig2($selectedCensusBlock.heat_index_mean)}º</li>
-      <li>Deviation from Citywide Heat Average: {sigfig2($selectedCensusBlock.heat_index_city_mean_minus_region_mean)}º</li>
+      <li>Deviation from Citywide Heat Average: {tempChange($selectedCensusBlock.heat_index_deviation)}</li>
       <hr class="my-2">
       <li>Total Impervious Area: {sigfig2($selectedCensusBlock.impervious_and_gap_area_percent)}%</li>
       <li>Impervious Public Area: {sigfig2($selectedCensusBlock.impervious_and_gap_area_percent_public_and_gap_public)}%</li>

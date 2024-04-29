@@ -47,7 +47,7 @@
           style: function (feature) {
             return {
               stroke: true,
-              color: "LightBlue",
+              color: "blue",
               weight: 1,
               fill: true,
               fillColor: "#C0C0C0",
