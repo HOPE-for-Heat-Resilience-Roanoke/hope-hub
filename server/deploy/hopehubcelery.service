@@ -1,0 +1,16 @@
+# /etc/systemd/system/hopehubcelery.service
+
+[Unit]
+Description=hopehub celery daemon
+After=network.target
+
+[Service]
+User=nwself
+Group=www-data
+Environment="DJANGO_SETTINGS_MODULE=config.settings.production"
+WorkingDirectory=/home/nwself/hope-hub/server
+ExecStart=/home/nwself/hope-hub/venv/bin/celery \
+          -A config.celery_app worker -l INFO
+
+[Install]
+WantedBy=multi-user.target

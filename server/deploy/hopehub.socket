@@ -1,0 +1,10 @@
+# goes in /etc/systemd/system/
+
+[Unit]
+Description=hopehub socket
+
+[Socket]
+ListenStream=/run/hopehub.sock
+
+[Install]
+WantedBy=sockets.target

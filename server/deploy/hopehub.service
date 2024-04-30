@@ -1,0 +1,19 @@
+# /etc/systemd/system/hopehub.service
+
+[Unit]
+Description=hopehub daemon
+Requires=hopehub.socket
+After=network.target
+
+[Service]
+User=nwself
+Group=www-data
+WorkingDirectory=/home/nwself/hope-hub/server
+ExecStart=/home/nwself/hope-hub/hope_hub_venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/hopehub.sock \
+          config.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

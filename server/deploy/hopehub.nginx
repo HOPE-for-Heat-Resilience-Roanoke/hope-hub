@@ -1,0 +1,14 @@
+server {
+    listen 80;
+    server_name roanokeheat.cs.vt.edu;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/nwself/hopehub/server;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/hopehub.sock;
+    }
+}
