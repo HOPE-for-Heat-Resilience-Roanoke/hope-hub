@@ -9,7 +9,7 @@ After=network.target
 User=nwself
 Group=www-data
 WorkingDirectory=/home/nwself/hope-hub/server
-ExecStart=/home/nwself/hope-hub/hope_hub_venv/bin/gunicorn \
+ExecStart=/home/nwself/hope-hub/server/hope_hub_venv/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/hopehub.sock \
