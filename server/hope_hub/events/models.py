@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 
 class Engagement(models.Model):
     title = models.CharField(max_length=255)
@@ -17,6 +19,9 @@ class Engagement(models.Model):
     conn_past = models.BooleanField(default=False, help_text="Processing the past")
     conn_present = models.BooleanField(default=False, help_text="Understanding the present")
     conn_future = models.BooleanField(default=False, help_text="Visioning the future")
+
+    class Meta:
+        ordering = ("-date",)
 
     def to_json(self):
         return {
@@ -37,6 +42,11 @@ class Engagement(models.Model):
                 a.to_json() for a in self.artifact_set.all()
             ]
         }
+
+    def get_absolute_url(self):
+        return reverse(
+            'events:detail', kwargs={"pk": self.pk}
+        )
 
     def __str__(self):
         return f"{self.title} [{self.date.isoformat()}]"

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Engagement List{% endblock title %}
+
+{% block content %}
+
+<h2>Engagements</h2>
+
+<ul>
+  {% for engagement in engagement_list %}
+    <li>
+      <a href="{% url 'events:detail' engagement.pk %}">
+        {{ engagement.date }} {{ engagement.title }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+<p>
+  <a class="btn btn-primary" href="{% url 'events:create' %}" role="button">
+    Add New Engagement
+  </a>
+</p>
+{% endblock content %}

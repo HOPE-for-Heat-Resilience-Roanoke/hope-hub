@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+  Engagement {{ engagement.title }}
+{% endblock title %}
+
+{% block content %}
+  <h1>{{ engagement.title }}</h1>
+
+  <h3>Date</h3>
+  <p>{{ engagement.date }}</p>
+
+  <h3>Description</h3>
+  <p>{{ engagement.description }}</p>
+
+  <h3>Location</h3>
+  <p>{{ engagement.relevant_location }}</p>
+
+  <h3>Comprehensive Plan</h3>
+  <h4>Equity</h4>
+  {{ engagement.comp_equity }}
+  <h4>Community</h4>
+  {{ engagement.comp_community }}
+  <h4>Nature</h4>
+  {{ engagement.comp_nature }}
+  <h4>Environment</h4>
+  {{ engagement.comp_environment }}
+
+  <h3>Time</h3>
+
+  <h4>Past</h4>
+  {{ engagement.conn_past }}
+  <h4>Present</h4>
+  {{ engagement.conn_present }}
+  <h4>Future</h4>
+  {{ engagement.conn_future }}
+
+  <form
+    method="post"
+    enctype="multipart/form-data"
+    action="{% url 'events:artifact_create' engagement.pk %}"
+  >
+      {% csrf_token %}
+      {{ formset|crispy }}
+      <button type="submit" class="btn btn-primary">
+        Submit
+      </button>
+  </form>
+{% endblock content %}
