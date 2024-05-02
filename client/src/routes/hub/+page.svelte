@@ -77,7 +77,7 @@
     </MapFilters>
 
     <MapFilters name="Engagements">
-      <EngagementControls />
+      <EngagementControls {filteredEngagements} />
     </MapFilters>
 
   </section>
