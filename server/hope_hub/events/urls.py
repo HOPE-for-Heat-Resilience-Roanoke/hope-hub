@@ -10,6 +10,16 @@ urlpatterns = [
         name='create'
     ),
     path(
+        route='places/create',
+        view=views.PlaceCreateView.as_view(),
+        name='place_create'
+    ),
+    path(
+        route='places/<int:pk>/update',
+        view=views.PlaceUpdateView.as_view(),
+        name='place_update'
+    ),
+    path(
         route='<int:pk>/update',
         view=views.EngagementUpdateView.as_view(),
         name='update'

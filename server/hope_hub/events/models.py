@@ -1,5 +1,19 @@
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
+
+
+class Place(models.Model):
+    name = models.CharField(max_length=255)
+
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Engagement(models.Model):
@@ -7,18 +21,23 @@ class Engagement(models.Model):
     description = models.TextField()
     date = models.DateField()
 
-    relevant_location = models.TextField()
-    latitude = models.FloatField()
-    longitude = models.FloatField()
+    # relevant_location = models.TextField()
+    # latitude = models.FloatField()
+    # longitude = models.FloatField()
+    place = models.ForeignKey(Place, null=True, blank=True, on_delete=models.PROTECT)
 
-    comp_equity = models.BooleanField(default=False, help_text="Interwoven Equity")
-    comp_community = models.BooleanField(default=False, help_text="Healthy Community")
-    comp_nature = models.BooleanField(default=False, help_text="Harmony with Nature")
-    comp_environment = models.BooleanField(default=False, help_text="Livable Built Environment")
+    comp_equity = models.BooleanField("Comp Plan Equity", default=False, help_text="Interwoven Equity")
+    comp_community = models.BooleanField("Comp Plan Community", default=False, help_text="Healthy Community")
+    comp_nature = models.BooleanField("Comp Plan Nature", default=False, help_text="Harmony with Nature")
+    comp_environment = models.BooleanField("Comp Plan Environment", default=False, help_text="Livable Built Environment")
 
-    conn_past = models.BooleanField(default=False, help_text="Processing the past")
-    conn_present = models.BooleanField(default=False, help_text="Understanding the present")
-    conn_future = models.BooleanField(default=False, help_text="Visioning the future")
+    conn_past = models.BooleanField("Connection Past", default=False, help_text="Processing the Past")
+    conn_present = models.BooleanField("Connection Present", default=False, help_text="Understanding the Present")
+    conn_future = models.BooleanField("Connection Future", default=False, help_text="Visioning the Future")
+
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ("-date",)
@@ -61,10 +80,10 @@ def engagement_date_path(instance, filename):
 
 
 class Artifact(models.Model):
-    attribution = models.TextField("Attribution", blank=True)
-    statement = models.TextField("Artist Statement", blank=True)
+    attribution = models.TextField("Attribution for Statement", blank=True)
+    statement = models.TextField("Connection to Community Resilience Statement", blank=True)
     engagement = models.ForeignKey(Engagement, on_delete=models.PROTECT)
-    alt_text = models.TextField("Alt Text", blank=True)
+    alt_text = models.TextField("Image Caption", blank=True)
     upload = models.FileField(upload_to=engagement_date_path)
 
     def to_json(self):

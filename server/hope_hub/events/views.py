@@ -1,17 +1,23 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.views import View
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
 
-from .models import Artifact, Engagement
+from .models import Artifact, Engagement, Place
 
 
-class EngagementListView(ListView):
+class EngagementListView(LoginRequiredMixin, ListView):
     model = Engagement
 
+    def get_queryset(self, **kwargs):
+        qs = super().get_queryset(**kwargs)
+        return qs.filter(created_by=self.request.user)
 
-class EngagementDetailView(DetailView):
+
+class EngagementDetailView(LoginRequiredMixin, DetailView):
     model = Engagement
 
     def get_context_data(self, **kwargs):
@@ -35,15 +41,43 @@ class EngagementDetailView(DetailView):
         return context
 
 
-class EngagementCreateView(CreateView):
+class PlaceCreateView(LoginRequiredMixin, CreateView):
+    model = Place
+    fields = (
+        "name",
+        "latitude",
+        "longitude"
+    )
+    action = "Add"
+
+    def get_success_url(self):
+        return reverse("events:list")
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+
+class PlaceUpdateView(LoginRequiredMixin, UpdateView):
+    model = Place
+    fields = (
+        "name",
+        "latitude",
+        "longitude"
+    )
+    action = "Update"
+
+    def get_success_url(self):
+        return reverse("events:list")
+
+
+class EngagementCreateView(LoginRequiredMixin, CreateView):
     model = Engagement
     fields = (
         "title",
         "description",
         "date",
-        "relevant_location",
-        "latitude",
-        "longitude",
+        "place",
         "comp_equity",
         "comp_community",
         "comp_nature",
@@ -52,17 +86,20 @@ class EngagementCreateView(CreateView):
         "conn_present",
         "conn_future",
     )
+    action = "Add"
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
 
 
-class EngagementUpdateView(UpdateView):
+class EngagementUpdateView(LoginRequiredMixin, UpdateView):
     model = Engagement
     fields = (
         "title",
         "description",
         "date",
-        "relevant_location",
-        "latitude",
-        "longitude",
+        "place",
         "comp_equity",
         "comp_community",
         "comp_nature",
@@ -74,16 +111,7 @@ class EngagementUpdateView(UpdateView):
     action = "Update"
 
 
-class ArtifactCreateView(CreateView):
-    model = Artifact
-    fields = (
-        "upload",
-        # "alt_text",
-        # "statement",
-        # "attribution",
-    )
-
-class ArtifactCreateView(SingleObjectMixin, View):
+class ArtifactCreateView(LoginRequiredMixin, SingleObjectMixin, View):
     model = Engagement
 
     def post(self, request, *args, **kwargs):
@@ -98,7 +126,6 @@ class ArtifactCreateView(SingleObjectMixin, View):
                 "alt_text",
                 "upload",
             ])
-        print("anything in request. files".format(request.FILES))
         formset = ArtifactInlineFormSet(request.POST, request.FILES, instance=engagement)
         if formset.is_valid():
             formset.save()

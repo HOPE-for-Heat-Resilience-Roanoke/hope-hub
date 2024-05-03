@@ -5,15 +5,17 @@ from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 
+from hope_hub.events.views import EngagementListView
+
+
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    path("about/", TemplateView.as_view(template_name="pages/about.html"), name="about"),
+    path("", EngagementListView.as_view(), name="home"),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("hope_hub.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    path("engagements/", include("hope_hub.events.urls")),
+    path("events/", include("hope_hub.events.urls")),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

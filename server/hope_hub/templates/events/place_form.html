@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+  {{ view.action|default:"Add" }} Place
+{% endblock title %}
+
+{% block content %}
+
+  {% with action=view.action|default:"Add" %}
+    <h1>{{ action }} Place</h1>
+
+    <form method="post" action="{% if view.action == 'Add' %}
+      {% url 'events:place_create' %}
+    {% else %}
+      {% url 'events:place_update' object.pk %}
+    {% endif %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-primary">
+        {{ action }}
+      </button>
+    </form>
+  {% endwith %}
+{% endblock content %}

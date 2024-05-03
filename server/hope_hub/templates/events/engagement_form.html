@@ -7,10 +7,35 @@
   {{ view.action|default:"Add" }} Engagement
 {% endblock title %}
 
+{% block extracss %}
+<style>
+  aside {
+    padding: 1rem;
+    background: #e0e0e0;
+  }
+</style>
+{% endblock extracss %}
+
 {% block content %}
+
   {% with action=view.action|default:"Add" %}
     <h1>{{ action }} Engagement</h1>
-    <form method="post" action="{% url 'events:create' %}">
+
+    <aside>
+      If the location of this engagement is not already in the dropdown menu of places, add it here first.
+
+      <p>
+        <a class="btn btn-primary" href="{% url 'events:place_create' %}" role="button">
+          Add New Place
+        </a>
+      </p>
+    </aside>
+
+    <form method="post" action="{% if view.action == 'Add' %}
+      {% url 'events:create' %}
+    {% else %}
+      {% url 'events:update' object.pk %}
+    {% endif %}">
       {% csrf_token %}
       {{ form|crispy }}
       <button type="submit" class="btn btn-primary">

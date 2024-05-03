@@ -7,46 +7,97 @@
   Engagement {{ engagement.title }}
 {% endblock title %}
 
+{% block extracss %}
+  <style>
+    .flex {
+      display: flex;
+      justify-content: space-around;
+    }
+    h1 {
+      text-align: center;
+      padding: 1rem;
+    }
+    div.multiField textarea.form-control: {
+      height: 6em;
+    }
+    h6 {
+      font-weight: lighter;
+    }
+    h3 {
+      font-weight: lighter;
+      font-size: 1.25rem;
+    }
+    div.multiField {
+      border-bottom: 1px solid black;
+      padding-bottom: 2rem;
+      padding-top: 2rem;
+    }
+  </style>
+{% endblock extracss %}
+
 {% block content %}
   <h1>{{ engagement.title }}</h1>
 
-  <h3>Date</h3>
-  <p>{{ engagement.date }}</p>
+  <div class="flex">
+    <div class="flex-item">
 
-  <h3>Description</h3>
-  <p>{{ engagement.description }}</p>
+      <dl>
+        <dt>Date</dt>
+        <dd>{{ engagement.date }}</dd>
 
-  <h3>Location</h3>
-  <p>{{ engagement.relevant_location }}</p>
+        <dt>Description</dt>
+        <dd>{{ engagement.description }}</dd>
 
-  <h3>Comprehensive Plan</h3>
-  <h4>Equity</h4>
-  {{ engagement.comp_equity }}
-  <h4>Community</h4>
-  {{ engagement.comp_community }}
-  <h4>Nature</h4>
-  {{ engagement.comp_nature }}
-  <h4>Environment</h4>
-  {{ engagement.comp_environment }}
+        <dt>Location</dt>
+        <dd>{{ engagement.relevant_location }}</dd>
+      </dl>
 
-  <h3>Time</h3>
+      <hr/>
+      <h6>Comprehensive Plan</h6>
 
-  <h4>Past</h4>
-  {{ engagement.conn_past }}
-  <h4>Present</h4>
-  {{ engagement.conn_present }}
-  <h4>Future</h4>
-  {{ engagement.conn_future }}
+      <dl>
+        <dt>Interwoven Equity</dt>
+        <dd>{{ engagement.comp_equity }}</dd>
+        <dt>Healthy Community</dt>
+        <dd>{{ engagement.comp_community }}</dd>
+        <dt>Harmony with Nature</dt>
+        <dd>{{ engagement.comp_nature }}</dd>
+        <dt>Livable Built Environment</dt>
+        <dd>{{ engagement.comp_environment }}</dd>
+      </dl>
 
-  <form
-    method="post"
-    enctype="multipart/form-data"
-    action="{% url 'events:artifact_create' engagement.pk %}"
-  >
-      {% csrf_token %}
-      {{ formset|crispy }}
-      <button type="submit" class="btn btn-primary">
-        Submit
-      </button>
-  </form>
+      <hr/>
+      <h6>Time</h6>
+
+      <dl>
+        <dt>Processing the past</dt>
+        <dd>{{ engagement.conn_past }}</dd>
+        <dt>Understanding the present</dt>
+        <dd>{{ engagement.conn_present }}</dd>
+        <dt>Visioning the future</dt>
+        <dd>{{ engagement.conn_future }}</dd>
+      </dl>
+
+      <p>
+        <a class="btn btn-primary" href="{% url 'events:update' engagement.pk %}" role="button">
+          Update Engagement
+        </a>
+      </p>
+
+    </div>
+    <div class="flex-item">
+      <h3>Upload Artifacts</h3>
+      <form
+        method="post"
+        enctype="multipart/form-data"
+        action="{% url 'events:artifact_create' engagement.pk %}"
+      >
+          {% csrf_token %}
+          {{ formset|crispy }}
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+      </form>
+    </div>
+  </div>
 {% endblock content %}

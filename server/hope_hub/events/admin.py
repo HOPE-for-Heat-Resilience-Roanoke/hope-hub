@@ -8,9 +8,7 @@ class EngagementAdmin(admin.ModelAdmin):
     list_display = (
         'title',
         'date',
-        'relevant_location',
-        'latitude',
-        'longitude',
+        'place',
         'comp_equity',
         'comp_community',
         'comp_nature',
