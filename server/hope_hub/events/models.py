@@ -21,10 +21,7 @@ class Engagement(models.Model):
     description = models.TextField()
     date = models.DateField()
 
-    # relevant_location = models.TextField()
-    # latitude = models.FloatField()
-    # longitude = models.FloatField()
-    place = models.ForeignKey(Place, null=True, blank=True, on_delete=models.PROTECT)
+    place = models.ForeignKey(Place, on_delete=models.PROTECT)
 
     comp_equity = models.BooleanField("Comp Plan Equity", default=False, help_text="Interwoven Equity")
     comp_community = models.BooleanField("Comp Plan Community", default=False, help_text="Healthy Community")
@@ -47,9 +44,9 @@ class Engagement(models.Model):
             "title": self.title,
             "description": self.description,
             "date": self.date.isoformat(),
-            "relevant_location": self.relevant_location,
-            "latitude": self.latitude,
-            "longitude": self.longitude,
+            "relevant_location": self.place.name,
+            "latitude": self.place.latitude,
+            "longitude": self.place.longitude,
             "comp_equity": self.comp_equity,
             "comp_community": self.comp_community,
             "comp_nature": self.comp_nature,
