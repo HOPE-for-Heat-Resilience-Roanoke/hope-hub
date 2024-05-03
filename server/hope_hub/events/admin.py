@@ -1,6 +1,20 @@
 from django.contrib import admin
 
-from .models import Engagement, Artifact
+from .models import Engagement, Artifact, Place
+
+
+@admin.register(Place)
+class PlaceAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'name',
+        'latitude',
+        'longitude',
+        'created_by',
+        'created',
+    )
+    list_filter = ('created_by', 'created')
+    search_fields = ('name',)
 
 
 @admin.register(Engagement)
