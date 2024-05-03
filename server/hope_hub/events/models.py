@@ -86,6 +86,10 @@ class Artifact(models.Model):
     alt_text = models.TextField("Image Caption", blank=True)
     upload = models.FileField(upload_to=engagement_date_path)
 
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
     def to_json(self):
         return {
             "attribution": self.attribution,

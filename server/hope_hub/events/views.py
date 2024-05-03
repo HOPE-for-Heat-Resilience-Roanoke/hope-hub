@@ -128,7 +128,12 @@ class ArtifactCreateView(LoginRequiredMixin, SingleObjectMixin, View):
             ])
         formset = ArtifactInlineFormSet(request.POST, request.FILES, instance=engagement)
         if formset.is_valid():
-            formset.save()
+            for form in formset.forms:
+                f = form.save(commit=False)
+                f.created_by = request.user
+                f.save()
+
+            # formset.save()
         else:
             print(formset.errors)
 
