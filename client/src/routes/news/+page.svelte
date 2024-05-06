@@ -25,7 +25,7 @@
     </div>
     <a {href}>
       <div
-        class="w-96 rounded-lg overflow-hidden"
+        class="w-96 rounded-lg overflow-hidden flex justify-center"
       >
         <img
           src={metadata.imageUrl}
