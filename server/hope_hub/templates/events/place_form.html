@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 
+{% load static %}
 {% load crispy_forms_tags %}
 
 
 {% block title %}
   {{ view.action|default:"Add" }} Place
 {% endblock title %}
+
+{% block extrajavascript %}
+  <script src="{% static "js/place_form.js" %}" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_PLACES_API_KEY }}&libraries=places&loading=async&callback=initAutocomplete" async defer></script>
+{% endblock extrajavascript %}
 
 {% block content %}
 
@@ -18,8 +24,19 @@
       {% url 'events:place_update' object.pk %}
     {% endif %}">
       {% csrf_token %}
+
+      <label for="autocomplete" class="form-label">Location*</label>
+      <input
+        id="autocomplete"
+        class="form-control mb-3"
+        type="text"
+        name="place"
+        placeholder="Enter a location"
+      />
+
       {{ form|crispy }}
-      <button type="submit" class="btn btn-primary">
+
+      <button type="submit" class="btn btn-primary mt-3">
         {{ action }}
       </button>
     </form>

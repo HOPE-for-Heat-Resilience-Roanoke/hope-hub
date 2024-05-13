@@ -6,6 +6,7 @@
 
 <h2>Engagements</h2>
 
+<h4>Engagements Created by Me</h4>
 <ul>
   {% for engagement in engagement_list %}
     <li>
@@ -15,6 +16,17 @@
     </li>
   {% endfor %}
 </ul>
+
+{% if other_objects %}
+  <h4>Engagements By Other Users</h4>
+  {% for engagement in other_objects %}
+    <li>
+      <a href="{% url 'events:detail' engagement.pk %}">
+        {{ engagement.date }} {{ engagement.title }}
+      </a>
+    </li>
+  {% endfor %}
+{% endif %}
 
 <p>
   <a class="btn btn-primary" href="{% url 'events:create' %}" role="button">

@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.forms import inlineformset_factory
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -15,6 +17,14 @@ class EngagementListView(LoginRequiredMixin, ListView):
     def get_queryset(self, **kwargs):
         qs = super().get_queryset(**kwargs)
         return qs.filter(created_by=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        if self.request.user.groups.filter(name="admin").exists():
+            context["other_objects"] = self.model.objects.filter(~Q(created_by=self.request.user))
+
+        return context
 
 
 class EngagementDetailView(LoginRequiredMixin, DetailView):
@@ -50,6 +60,11 @@ class PlaceCreateView(LoginRequiredMixin, CreateView):
     )
     action = "Add"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["GOOGLE_PLACES_API_KEY"] = settings.GOOGLE_PLACES_API_KEY
+        return context
+
     def get_success_url(self):
         return reverse("events:list")
 
@@ -66,6 +81,11 @@ class PlaceUpdateView(LoginRequiredMixin, UpdateView):
         "longitude"
     )
     action = "Update"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["GOOGLE_PLACES_API_KEY"] = settings.GOOGLE_PLACES_API_KEY
+        return context
 
     def get_success_url(self):
         return reverse("events:list")
