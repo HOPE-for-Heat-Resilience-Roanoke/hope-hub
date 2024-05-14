@@ -42,7 +42,9 @@ class EngagementDetailView(LoginRequiredMixin, DetailView):
                 "alt_text",
                 "statement",
                 "attribution",
-            ])
+            ],
+            extra=1
+        )
         artifact_formset = ArtifactInlineFormSet(
             instance=self.object
         )
@@ -53,9 +55,11 @@ class EngagementDetailView(LoginRequiredMixin, DetailView):
             fields=[
                 "upload",
                 "title",
-            ])
+            ],
+            extra=1
+        )
         downloadablefile_formset = DownloadableFileInlineFormSet(
-            instance=self.object
+            instance=self.object,
         )
 
         yl = YoutubeLink.objects.filter(engagement = self.get_object()).first()
@@ -147,11 +151,10 @@ class ArtifactCreateView(LoginRequiredMixin, SingleObjectMixin, View):
 
         if formset.is_valid():
             for form in formset.forms:
-                f = form.save(commit=False)
-                f.created_by = request.user
-                f.save()
-
-            # formset.save()
+                if form.cleaned_data != {}:
+                    f = form.save(commit=False)
+                    f.created_by = request.user
+                    f.save()
         else:
             print(formset.errors)
 
@@ -179,9 +182,10 @@ class DownloadableFileCreateView(LoginRequiredMixin, SingleObjectMixin, View):
 
         if downloadablefile_formset.is_valid():
             for form in downloadablefile_formset.forms:
-                f = form.save(commit=False)
-                f.created_by = request.user
-                f.save()
+                if form.cleaned_data != {}:
+                    f = form.save(commit=False)
+                    f.created_by = request.user
+                    f.save()
         else:
             print(downloadablefile_formset.errors)
 

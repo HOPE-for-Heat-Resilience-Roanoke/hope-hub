@@ -88,7 +88,7 @@ class Artifact(models.Model):
     attribution = models.CharField("Attribution for Statement", max_length=255, blank=True, help_text="Will appear as the attribution for the connection to resilience statement (aka who said the statement).")
     statement = models.TextField("Connection to Community Resilience Statement", blank=True, help_text="Will appear as a block quote under the image.")
     engagement = models.ForeignKey(Engagement, on_delete=models.PROTECT)
-    alt_text = models.CharField("Image Caption", max_length=255, blank=True, help_text="Caption for the image, also used as the alt text.")
+    alt_text = models.CharField("Image Caption", max_length=255, help_text="Caption for the image, also used as the alt text.")
     upload = models.FileField(upload_to=engagement_date_path)
 
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)

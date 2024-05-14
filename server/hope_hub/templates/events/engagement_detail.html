@@ -4,7 +4,7 @@
 
 
 {% block title %}
-  Engagement {{ engagement.title }}
+  {{ engagement.title }}
 {% endblock title %}
 
 {% block extracss %}
@@ -12,6 +12,7 @@
     .flex {
       display: flex;
       justify-content: space-around;
+      gap: 2rem;
     }
     h1 {
       text-align: center;
@@ -24,8 +25,12 @@
       font-weight: lighter;
     }
     h3 {
-      font-weight: lighter;
-      font-size: 1.25rem;
+/*      font-weight: lighter;*/
+/*      font-size: 1.25rem;*/
+      margin-top: 2rem;
+    }
+    h4 {
+      margin-top: 2rem;
     }
     div.multiField {
       border-bottom: 1px solid black;
@@ -52,7 +57,7 @@
         <dd>{{ engagement.description }}</dd>
 
         <dt>Location</dt>
-        <dd>{{ engagement.relevant_location }}</dd>
+        <dd>{{ engagement.place.name }}</dd>
       </dl>
 
       <hr/>
@@ -90,16 +95,26 @@
     </div>
     <div class="flex-item col-md-6">
       <div>
-        <h3>Upload Artifacts</h3>
+        <h3>Upload Images</h3>
         <form
           method="post"
           enctype="multipart/form-data"
           action="{% url 'events:artifact_create' engagement.pk %}"
         >
             {% csrf_token %}
-            {{ artifact_formset|crispy }}
+            {{ artifact_formset.management_form }}
+
+            {% for form in artifact_formset %}
+              {% if forloop.last %}
+                <h4>Add New Image</h4>
+              {% else %}
+                <h4>Update Existing Image</h4>
+              {% endif %}
+
+              {{ form|crispy }}
+            {% endfor %}
             <button type="submit" class="btn btn-primary">
-              Submit Artifact(s)
+              Submit Image(s)
             </button>
         </form>
       </div>
@@ -111,7 +126,17 @@
           action="{% url 'events:downloadablefile_create' engagement.pk %}"
         >
             {% csrf_token %}
-            {{ downloadablefile_formset|crispy }}
+            {{ downloadablefile_formset.management_form }}
+
+            {% for form in downloadablefile_formset %}
+              {% if forloop.last %}
+                <h4>Add New Downloadable File</h4>
+              {% else %}
+                <h4>Update Existing Downloadable File</h4>
+              {% endif %}
+
+              {{ form|crispy }}
+            {% endfor %}
             <button type="submit" class="btn btn-primary">
               Submit Downloadable File(s)
             </button>
