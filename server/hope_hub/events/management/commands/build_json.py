@@ -28,5 +28,5 @@ class Command(BaseCommand):
         # required_argument = options["required_argument"]
         # bool_flag = options["bool_flag"]
 
-        data = [e.to_json() for e in Engagement.objects.all()]
+        data = [e.to_json() for e in Engagement.objects.filter(approved=True)]
         print(json.dumps(data))
