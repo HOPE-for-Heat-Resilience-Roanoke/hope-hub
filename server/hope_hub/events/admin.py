@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Engagement, Artifact, Place
+from .models import Engagement, Artifact, Place, DownloadableFile, YoutubeLink
 
 
 @admin.register(Place)
@@ -50,4 +50,29 @@ class ArtifactAdmin(admin.ModelAdmin):
         'engagement',
         'attribution',
         'upload',
+    )
+
+
+@admin.register(DownloadableFile)
+class DownloadableFileAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'engagement',
+        'title',
+        'upload',
+        'created_by',
+        'created',
+        'updated',
+    )
+
+
+@admin.register(YoutubeLink)
+class YoutubeLinkAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'engagement',
+        'link',
+        'created_by',
+        'created',
+        'updated',
     )

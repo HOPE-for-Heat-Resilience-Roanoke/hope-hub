@@ -8,7 +8,8 @@ from django.views import View
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
 
-from .models import Artifact, Engagement, Place
+from .models import Artifact, Engagement, Place, DownloadableFile, YoutubeLink
+from .forms import YoutubeLinkForm
 
 
 class EngagementListView(LoginRequiredMixin, ListView):
@@ -42,11 +43,27 @@ class EngagementDetailView(LoginRequiredMixin, DetailView):
                 "statement",
                 "attribution",
             ])
-        formset = ArtifactInlineFormSet(
+        artifact_formset = ArtifactInlineFormSet(
             instance=self.object
         )
 
-        context["formset"] = formset
+        DownloadableFileInlineFormSet = inlineformset_factory(
+            Engagement,
+            DownloadableFile,
+            fields=[
+                "upload",
+                "title",
+            ])
+        downloadablefile_formset = DownloadableFileInlineFormSet(
+            instance=self.object
+        )
+
+        yl = YoutubeLink.objects.filter(engagement = self.get_object()).first()
+        youtubelink_form = YoutubeLinkForm(instance=yl)
+
+        context["artifact_formset"] = artifact_formset
+        context["downloadablefile_formset"] = downloadablefile_formset
+        context["youtubelink_form"] = youtubelink_form
 
         return context
 
@@ -156,5 +173,55 @@ class ArtifactCreateView(LoginRequiredMixin, SingleObjectMixin, View):
             # formset.save()
         else:
             print(formset.errors)
+
+        return redirect(engagement)
+
+
+class DownloadableFileCreateView(LoginRequiredMixin, SingleObjectMixin, View):
+    model = Engagement
+
+    def post(self, request, *args, **kwargs):
+        engagement = self.get_object()
+
+        DownloadableFileInlineFormSet = inlineformset_factory(
+            Engagement,
+            DownloadableFile,
+            fields=[
+                "upload",
+                "title",
+            ])
+        downloadablefile_formset = DownloadableFileInlineFormSet(
+            request.POST,
+            request.FILES,
+            instance=self.object
+        )
+
+        if downloadablefile_formset.is_valid():
+            for form in formset.forms:
+                f = form.save(commit=False)
+                f.created_by = request.user
+                f.save()
+        else:
+            print(formset.errors)
+
+        return redirect(engagement)
+
+
+class YoutubeLinkCreateView(LoginRequiredMixin, SingleObjectMixin, View):
+    model = Engagement
+
+    def post(self, request, *args, **kwargs):
+        engagement = self.get_object()
+
+        youtubelink_form = YoutubeLinkForm(request.POST)
+        if youtubelink_form.is_valid():
+            f = youtubelink_form.save(commit=False)
+
+            f.engagement = engagement
+            f.created_by = request.user
+
+            f.save()
+        else:
+            print(youtubelink_form.errors)
 
         return redirect(engagement)

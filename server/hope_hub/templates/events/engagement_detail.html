@@ -32,6 +32,9 @@
       padding-bottom: 2rem;
       padding-top: 2rem;
     }
+    .textarea.form-control {
+      height: 6em;
+    }
   </style>
 {% endblock extracss %}
 
@@ -39,7 +42,7 @@
   <h1>{{ engagement.title }}</h1>
 
   <div class="flex">
-    <div class="flex-item">
+    <div class="flex-item col-md-6">
 
       <dl>
         <dt>Date</dt>
@@ -85,19 +88,48 @@
       </p>
 
     </div>
-    <div class="flex-item">
-      <h3>Upload Artifacts</h3>
-      <form
-        method="post"
-        enctype="multipart/form-data"
-        action="{% url 'events:artifact_create' engagement.pk %}"
-      >
-          {% csrf_token %}
-          {{ formset|crispy }}
-          <button type="submit" class="btn btn-primary">
-            Submit
-          </button>
-      </form>
+    <div class="flex-item col-md-6">
+      <div>
+        <h3>Upload Artifacts</h3>
+        <form
+          method="post"
+          enctype="multipart/form-data"
+          action="{% url 'events:artifact_create' engagement.pk %}"
+        >
+            {% csrf_token %}
+            {{ artifact_formset|crispy }}
+            <button type="submit" class="btn btn-primary">
+              Submit Artifact(s)
+            </button>
+        </form>
+      </div>
+      <div>
+        <h3>Upload Downloadable Files</h3>
+        <form
+          method="post"
+          enctype="multipart/form-data"
+          action="{% url 'events:downloadablefile_create' engagement.pk %}"
+        >
+            {% csrf_token %}
+            {{ downloadablefile_formset|crispy }}
+            <button type="submit" class="btn btn-primary">
+              Submit Downloadabble File(s)
+            </button>
+        </form>
+      </div>
+      <div>
+        <h3>Submit Youtube Link</h3>
+        <form
+          method="post"
+          action="{% url 'events:youtubelink_create' engagement.pk %}"
+        >
+            {% csrf_token %}
+            {{ youtubelink_form|crispy }}
+            <button type="submit" class="btn btn-primary">
+              Submit Youtube Link
+            </button>
+        </form>
+      </div>
     </div>
   </div>
 {% endblock content %}

@@ -39,4 +39,14 @@ urlpatterns = [
         view=views.ArtifactCreateView.as_view(),
         name='artifact_create'
     ),
+    path(
+        route='<int:pk>/downloadablefiles/create',
+        view=views.DownloadableFileCreateView.as_view(),
+        name='downloadablefile_create'
+    ),
+    path(
+        route='<int:pk>/youtubelink/create',
+        view=views.YoutubeLinkCreateView.as_view(),
+        name='youtubelink_create'
+    ),
 ]
