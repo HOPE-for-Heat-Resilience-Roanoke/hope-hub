@@ -17,20 +17,22 @@ class Place(models.Model):
 
 
 class Engagement(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    date = models.DateField()
+    title = models.CharField(max_length=255, help_text="A name for your event/engagement/activity.")
+    description = models.TextField(help_text="A short (2-3 sentence) explanation about what the event/engagement/activity was and its connection to heat resilience.")
+    date = models.DateField(help_text="The date of the event/engagement/activity.")
 
-    place = models.ForeignKey(Place, on_delete=models.PROTECT)
+    place = models.ForeignKey(Place, on_delete=models.PROTECT, help_text="The relevant location for the event. Must be a specific place, not a region. Make sure to add the place before filling out this form.")
 
-    comp_equity = models.BooleanField("Comp Plan Equity", default=False, help_text="Interwoven Equity")
-    comp_community = models.BooleanField("Comp Plan Community", default=False, help_text="Healthy Community")
-    comp_nature = models.BooleanField("Comp Plan Nature", default=False, help_text="Harmony with Nature")
-    comp_environment = models.BooleanField("Comp Plan Environment", default=False, help_text="Livable Built Environment")
+    comp_equity = models.BooleanField("Interwoven Equity", default=False, help_text="A theme from the City of Roanoke’s 2040 Comprehensive Plan")
+    comp_community = models.BooleanField("Healthy Community", default=False, help_text="A theme from the City of Roanoke’s 2040 Comprehensive Plan")
+    comp_nature = models.BooleanField("Harmony with Nature", default=False, help_text="A theme from the City of Roanoke’s 2040 Comprehensive Plan")
+    comp_environment = models.BooleanField("Livable Built Environment", default=False, help_text="A theme from the City of Roanoke’s 2040 Comprehensive Plan")
 
-    conn_past = models.BooleanField("Connection Past", default=False, help_text="Processing the Past")
-    conn_present = models.BooleanField("Connection Present", default=False, help_text="Understanding the Present")
-    conn_future = models.BooleanField("Connection Future", default=False, help_text="Visioning the Future")
+    conn_past = models.BooleanField("Processing the Past", default=False, help_text="Connection to high school community planning program")
+    conn_present = models.BooleanField("Understanding the Present", default=False, help_text="Connection to high school community planning program")
+    conn_future = models.BooleanField("Visioning the Future", default=False, help_text="Connection to high school community planning program")
+
+    approved = models.BooleanField("Ready for publishing on the hub", default=False, help_text="Visioning the Future")
 
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     created = models.DateTimeField(auto_now_add=True)

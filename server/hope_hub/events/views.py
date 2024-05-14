@@ -9,7 +9,7 @@ from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
 
 from .models import Artifact, Engagement, Place, DownloadableFile, YoutubeLink
-from .forms import YoutubeLinkForm
+from .forms import EngagementForm, YoutubeLinkForm
 
 
 class EngagementListView(LoginRequiredMixin, ListView):
@@ -110,19 +110,7 @@ class PlaceUpdateView(LoginRequiredMixin, UpdateView):
 
 class EngagementCreateView(LoginRequiredMixin, CreateView):
     model = Engagement
-    fields = (
-        "title",
-        "description",
-        "date",
-        "place",
-        "comp_equity",
-        "comp_community",
-        "comp_nature",
-        "comp_environment",
-        "conn_past",
-        "conn_present",
-        "conn_future",
-    )
+    form_class = EngagementForm
     action = "Add"
 
     def form_valid(self, form):
@@ -132,19 +120,7 @@ class EngagementCreateView(LoginRequiredMixin, CreateView):
 
 class EngagementUpdateView(LoginRequiredMixin, UpdateView):
     model = Engagement
-    fields = (
-        "title",
-        "description",
-        "date",
-        "place",
-        "comp_equity",
-        "comp_community",
-        "comp_nature",
-        "comp_environment",
-        "conn_past",
-        "conn_present",
-        "conn_future",
-    )
+    form_class = EngagementForm
     action = "Update"
 
 
@@ -163,7 +139,12 @@ class ArtifactCreateView(LoginRequiredMixin, SingleObjectMixin, View):
                 "alt_text",
                 "upload",
             ])
-        formset = ArtifactInlineFormSet(request.POST, request.FILES, instance=engagement)
+        formset = ArtifactInlineFormSet(
+            request.POST,
+            request.FILES,
+            instance=engagement
+        )
+
         if formset.is_valid():
             for form in formset.forms:
                 f = form.save(commit=False)
@@ -193,16 +174,16 @@ class DownloadableFileCreateView(LoginRequiredMixin, SingleObjectMixin, View):
         downloadablefile_formset = DownloadableFileInlineFormSet(
             request.POST,
             request.FILES,
-            instance=self.object
+            instance=engagement
         )
 
         if downloadablefile_formset.is_valid():
-            for form in formset.forms:
+            for form in downloadablefile_formset.forms:
                 f = form.save(commit=False)
                 f.created_by = request.user
                 f.save()
         else:
-            print(formset.errors)
+            print(downloadablefile_formset.errors)
 
         return redirect(engagement)
 
