@@ -42,15 +42,30 @@
   </div>
 </section>
 
-{#if engagement.artifacts}
-  <h4 class="font-bold mt-4 mb-2">Selected Artifacts</h4>
+{#if engagement.youtubelinks}
+  <h4 class="font-bold mt-4 mb-2">Video</h4>
+
+  <iframe width="100%" height="300" src="https://www.youtube.com/embed/{engagement.youtubelinks[0].link.substring(32)}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 {/if}
 
-{#each engagement.artifacts as artifact (artifact.alt_text)}
-  <ArtifactDetails
-    {artifact}
-  />
-{/each}
+{#if engagement.artifacts}
+  <h4 class="font-bold mt-4 mb-2">Selected Artifacts</h4>
+
+  {#each engagement.artifacts as artifact (artifact.alt_text)}
+    <ArtifactDetails
+      {artifact}
+    />
+  {/each}
+{/if}
+
+{#if engagement.downloadablefiles}
+  <h4 class="font-bold mt-4 mb-2">Files</h4>
+
+  {#each engagement.downloadablefiles as download}
+    <a href="{download.upload}">{download.title}</a>
+  {/each}
+
+{/if}
 
 <style>
   ul {
