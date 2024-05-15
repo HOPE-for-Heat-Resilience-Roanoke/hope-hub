@@ -7,6 +7,14 @@ HOPE for Heat Resilience Digital Hub
 
 License: MIT
 
+
+### How to add a new Google OAuth user
+
+They have to be registered as "test" users on the Google Console because this site isn't vetted by Google as an OAuth friend.
+
+In console, go to APIs & Services -> OAuth consent screen. Then Add User under test user.
+
+
 ## Settings
 
 Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
