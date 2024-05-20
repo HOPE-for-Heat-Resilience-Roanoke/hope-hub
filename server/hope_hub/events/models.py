@@ -1,3 +1,5 @@
+from urllib.parse import urlparse
+
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
@@ -135,8 +137,9 @@ class YoutubeLink(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def to_json(self):
+        url = urlparse(self.link)
         return {
-            "link": self.link,
+            "link": url.path[1:],
         }
 
     def __str__(self):
