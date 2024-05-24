@@ -1,4 +1,4 @@
-from urllib.parse import urlparse
+from urllib.parse import urlparse, parse_qs
 
 from django.conf import settings
 from django.db import models
@@ -30,9 +30,9 @@ class Engagement(models.Model):
     comp_nature = models.BooleanField("Harmony with Nature", default=False, help_text="A theme from the City of Roanoke’s 2040 Comprehensive Plan")
     comp_environment = models.BooleanField("Livable Built Environment", default=False, help_text="A theme from the City of Roanoke’s 2040 Comprehensive Plan")
 
-    conn_past = models.BooleanField("Processing the Past", default=False, help_text="Connection to high school community planning program")
-    conn_present = models.BooleanField("Understanding the Present", default=False, help_text="Connection to high school community planning program")
-    conn_future = models.BooleanField("Visioning the Future", default=False, help_text="Connection to high school community planning program")
+    conn_past = models.BooleanField("Processing the Past", default=False, help_text="Does the engagement encourage reflection on the past?")
+    conn_present = models.BooleanField("Understanding the Present", default=False, help_text="Does the engagement encourage reflection on the present?")
+    conn_future = models.BooleanField("Visioning the Future", default=False, help_text="Does the engagement encourage reflection on the future?")
 
     approved = models.BooleanField("Ready for publishing on the hub", default=False, help_text="Visioning the Future")
 
@@ -131,6 +131,8 @@ class DownloadableFile(models.Model):
 class YoutubeLink(models.Model):
     engagement = models.ForeignKey(Engagement, on_delete=models.PROTECT)
     link = models.URLField()
+    statement = models.TextField("Connection to Community Resilience Statement", blank=True, help_text="Will appear as a block quote under the image.")
+    attribution = models.CharField("Attribution for Statement", max_length=255, blank=True, help_text="Will appear as the attribution for the connection to resilience statement (aka who said the statement).")
 
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     created = models.DateTimeField(auto_now_add=True)
@@ -138,8 +140,17 @@ class YoutubeLink(models.Model):
 
     def to_json(self):
         url = urlparse(self.link)
+
+        qs = parse_qs(url.query)
+        if "v" in qs:
+            yt_id = qs["v"][0]
+        else:
+            yt_id = url.path[1:]
+
         return {
-            "link": url.path[1:],
+            "link": yt_id,
+            "attribution": self.attribution,
+            "statement": self.statement,
         }
 
     def __str__(self):

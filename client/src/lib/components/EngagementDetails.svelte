@@ -43,9 +43,17 @@
 </section>
 
 {#if engagement.youtubelinks.length > 0}
-  <h4 class="font-bold mt-4 mb-2">Video</h4>
 
-  <iframe width="100%" height="300" src="https://www.youtube.com/embed/{engagement.youtubelinks[0].link}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  {#each engagement.youtubelinks as youtubelink (youtubelink.link)}
+
+    <h4 class="font-bold mt-4 mb-2">Video</h4>
+    <iframe width="100%" height="300" src="https://www.youtube.com/embed/{youtubelink.link}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <p class="mt-4">{youtubelink.statement}</p>
+    {#if youtubelink.attribution}<p class="text-right text-sm mb-4">&mdash; {youtubelink.attribution}</p>{/if}
+
+  {/each}
+
 {/if}
 
 {#if engagement.artifacts.length > 0}

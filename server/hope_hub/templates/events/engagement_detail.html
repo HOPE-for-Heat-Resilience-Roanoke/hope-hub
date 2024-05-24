@@ -143,15 +143,25 @@
         </form>
       </div>
       <div>
-        <h3>Submit Youtube Link</h3>
+        <h3>Upload Youtube Link</h3>
         <form
           method="post"
           action="{% url 'events:youtubelink_create' engagement.pk %}"
         >
             {% csrf_token %}
-            {{ youtubelink_form|crispy }}
+            {{ youtubelink_formset.management_form }}
+
+            {% for form in youtubelink_formset %}
+              {% if forloop.last %}
+                <h4>Add New YouTube Link</h4>
+              {% else %}
+                <h4>Update Existing YouTube Link</h4>
+              {% endif %}
+
+              {{ form|crispy }}
+            {% endfor %}
             <button type="submit" class="btn btn-primary">
-              Submit Youtube Link
+              Submit YouTube Link(s)
             </button>
         </form>
       </div>

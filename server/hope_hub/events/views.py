@@ -62,12 +62,23 @@ class EngagementDetailView(LoginRequiredMixin, DetailView):
             instance=self.object,
         )
 
-        yl = YoutubeLink.objects.filter(engagement = self.get_object()).first()
-        youtubelink_form = YoutubeLinkForm(instance=yl)
+        YoutubeLinkInlineFormSet = inlineformset_factory(
+            Engagement,
+            YoutubeLink,
+            fields=[
+                "link",
+                "statement",
+                "attribution",
+            ],
+            extra=1
+        )
+        youtubelink_formset = YoutubeLinkInlineFormSet(
+            instance=self.object,
+        )
 
         context["artifact_formset"] = artifact_formset
         context["downloadablefile_formset"] = downloadablefile_formset
-        context["youtubelink_form"] = youtubelink_form
+        context["youtubelink_formset"] = youtubelink_formset
 
         return context
 
@@ -198,15 +209,27 @@ class YoutubeLinkCreateView(LoginRequiredMixin, SingleObjectMixin, View):
     def post(self, request, *args, **kwargs):
         engagement = self.get_object()
 
-        youtubelink_form = YoutubeLinkForm(request.POST)
-        if youtubelink_form.is_valid():
-            f = youtubelink_form.save(commit=False)
+        YoutubeLinkInlineFormSet = inlineformset_factory(
+            Engagement,
+            YoutubeLink,
+            fields=[
+                "link",
+                "statement",
+                "attribution",
+            ])
+        youtubelink_formset = YoutubeLinkInlineFormSet(
+            request.POST,
+            request.FILES,
+            instance=engagement
+        )
 
-            f.engagement = engagement
-            f.created_by = request.user
-
-            f.save()
+        if youtubelink_formset.is_valid():
+            for form in youtubelink_formset.forms:
+                if form.cleaned_data != {}:
+                    f = form.save(commit=False)
+                    f.created_by = request.user
+                    f.save()
         else:
-            print(youtubelink_form.errors)
+            print(youtubelink_formset.errors)
 
         return redirect(engagement)
