@@ -22,23 +22,11 @@ class EngagementAdmin(admin.ModelAdmin):
     list_display = (
         'title',
         'date',
-        'comp_equity',
-        'comp_community',
-        'comp_nature',
-        'comp_environment',
-        'conn_past',
-        'conn_present',
-        'conn_future',
+        'created_by'
     )
     list_filter = (
         'date',
-        'comp_equity',
-        'comp_community',
-        'comp_nature',
-        'comp_environment',
-        'conn_past',
-        'conn_present',
-        'conn_future',
+        'created_by'
     )
     ordering = ('-date',)
 
