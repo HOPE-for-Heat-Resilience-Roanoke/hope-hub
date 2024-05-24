@@ -48,8 +48,12 @@
 
   <div class="flex">
     <div class="flex-item col-md-6">
+      <p>Added by <strong>{{ engagement.created_by.username }}</strong> on {{ engagement.created }} (last updated {{ engagement.updated }})</p>
 
       <dl>
+        <dt>Added by</dt>
+        <dd>{{ engagement.created_by.username }}</dd>
+
         <dt>Date</dt>
         <dd>{{ engagement.date }}</dd>
 

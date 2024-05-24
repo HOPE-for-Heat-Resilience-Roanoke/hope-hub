@@ -19,13 +19,15 @@
 
 {% if other_objects %}
   <h4>Engagements By Other Users</h4>
+  <ul>
   {% for engagement in other_objects %}
     <li>
       <a href="{% url 'events:detail' engagement.pk %}">
         {{ engagement.date }} {{ engagement.title }}
-      </a>
+      </a><span> added by {{ engagement.created_by.username }}</span>
     </li>
   {% endfor %}
+  </ul>
 {% endif %}
 
 <p>
