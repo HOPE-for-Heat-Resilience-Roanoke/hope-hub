@@ -22,6 +22,7 @@ class EngagementAdmin(admin.ModelAdmin):
     list_display = (
         'title',
         'date',
+        'approved',
         'created_by'
     )
     list_filter = (
