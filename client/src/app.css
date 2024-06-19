@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.popup dt {
+  font-weight: bold;
+}
+
+.popup dd {
+  margin-bottom: 2px;
+}

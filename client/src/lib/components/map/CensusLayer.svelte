@@ -44,7 +44,7 @@
     .then((response) => response.json())
     .then((data) => {
       censusLayer = L.geoJSON(data, {
-          style: function (feature) {
+          style: (feature) => {
             return {
               stroke: true,
               color: "blue",
