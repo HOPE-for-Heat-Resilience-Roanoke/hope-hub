@@ -9,8 +9,8 @@
   console.log(treeLayer)
 
   const initialBounds = L.latLngBounds(
-      [37.24262844611252, -80.06080627441408], 
-      [37.35405735474607, -79.88502502441406]
+      [37.3180248908143, -79.90682258291666], 
+      [37.263397320905085, -80.02406730337565]
   );
 
   let map;
@@ -63,8 +63,8 @@
 
 <svelte:window on:resize={resizeMap} on:load={() => (loaded = true)} />
 
-<article class="">
-  <div class="flex flex-row">
+<article class="pt-4 px-8 md:px-2">
+  <div class="flex flex-col md:flex-row">
     <section class="prose">
       <h3>What is a Legacy Shade Tree?</h3>
 
@@ -94,53 +94,58 @@
       Please share your trees and stories by following <a href="https://virginiatech.questionpro.com/t/Aa0KTZ2wUR">this link to the survey page.</a>
 
       <p>If you have any questions or would like any additional information please contact Dr. Eric Wiseman by email at vtuf@vt.edu.</p>
-
-      <h3>Map of Legacy Trees</h3>
-      <p>Each marker on the map below represents a legacy tree in Roanoke! Click on a marker to see photos and read their stories. And, if any of these trees are familiar to you, tell us your own story!</p>
     </section>
-    <div>
-      <a href="https://virginiatech.questionpro.com/t/Aa0KTZ2wUR" class="sticky top-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm ml-4 mt-8 px-5 py-2.5 focus:outline-none">Tell us about a legacy tree!</a>
+    <div class="mt-8 text-center">
+      <a href="https://virginiatech.questionpro.com/t/Aa0KTZ2wUR" class="md:sticky md:top-32 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm ml-4 mt-8 px-5 py-2.5 focus:outline-none">Tell us about a legacy tree!</a>
     </div>
   </div>
-  <section class="tall py-8 flex flex-row">
-    <div class="h-full w-8/12">
-    {#if loaded || document.readyState === 'complete'}
-    <Leaflet bind:this={map} bounds={initialBounds}>
-      <BaseLayer />
-      
-      <GeoJSONLayer
-        source="/trees/LegacyShadeeTrees.json"
-        onEachFeature={(feature, layer) => {
-          layer.bindPopup(buildPopup(feature));
-
-          layer.on("click", () => {
-            selectedTree = feature;
-          });
-
-        }}
-        onFeatureStyle={(feature) => {
-          return {
-            stroke: true,
-            color: "blue",
-            weight: 1,
-            fill: true,
-            fillColor: "#C0C0C0",
-            fillOpacity: feature.properties.TC ? 0.5 : 0,
-          };
-        }}
-      />
-    </Leaflet>
-    {/if}
-    </div>
-    <div class="p-4 w-4/12">
-      {#if selectedTree}
-        <TreeDetails tree={selectedTree}/>
-      {:else}
-        Click on a marker on the map to see the details for that tree.
-      {/if}
-    </div>
+  <section class="prose mt-8">
+    <h3>Map of Legacy Trees</h3>
+    <p>Each marker on the map below represents a legacy tree in Roanoke! Click on a marker to see photos and read their stories. And, if any of these trees are familiar to you, tell us your own story! Or, <a href="https://virginiatech.questionpro.com/t/Aa0KTZ2wUR">tell us about a tree you know</a> and we'll add it to the map.</p>
   </section>
 </article>
+<section class=" py-8 flex flex-col-reverse md:flex-row">
+  <div class="md:w-8/12" style="height: 25rem">
+  {#if loaded || document.readyState === 'complete'}
+  <Leaflet bind:this={map} bounds={initialBounds}>
+    <BaseLayer />
+    
+    <GeoJSONLayer
+      source="/trees/LegacyShadeeTrees.json"
+      onEachFeature={(feature, layer) => {
+        layer.bindPopup(buildPopup(feature));
+
+        layer.on("click", () => {
+          selectedTree = feature;
+        });
+        layer.on("popupclose", () => {
+          selectedTree = null;
+        });
+
+      }}
+      onFeatureStyle={(feature) => {
+        return {
+          stroke: true,
+          color: "blue",
+          weight: 1,
+          fill: true,
+          fillColor: "#C0C0C0",
+          fillOpacity: feature.properties.TC ? 0.5 : 0,
+        };
+      }}
+    />
+  </Leaflet>
+  {/if}
+  </div>
+  <div class="px-8 mb-8 md:w-4/12 prose">
+    {#if selectedTree}
+      <TreeDetails tree={selectedTree}/>
+    {:else}
+      Click on a marker on the map to see the details for that tree.
+      Or, <a href="https://virginiatech.questionpro.com/t/Aa0KTZ2wUR">tell us about a legacy tree you know here.</a>
+    {/if}
+  </div>
+</section>
 
 <style>
   h4 {

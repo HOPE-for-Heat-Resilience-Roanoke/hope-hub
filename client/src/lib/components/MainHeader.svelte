@@ -20,8 +20,11 @@
       <a 
           class:font-bold={$page.url.pathname == "/about"} href="/about">about</a>
       <a 
-          class="border-r border-black pr-3"
+          class=""
           class:font-bold={$page.url.pathname == "/people"} href="/people">people</a>
+      <a 
+          class="border-r border-black pr-3"
+          class:font-bold={$page.url.pathname == "/legacytrees"} href="/legacytrees">trees</a>
       <a 
           
           class:font-bold={$page.url.pathname == "/hub"} href="/hub">Digital Hub</a>

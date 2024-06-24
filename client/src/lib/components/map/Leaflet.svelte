@@ -28,6 +28,7 @@
     map = L.map(node)
       .fitBounds(bounds)
       .on('zoom', (e) => dispatch('zoom', e));
+      // .on('zoomend', () => console.log(map.getBounds()));
     setTimeout(() => {
       if (map) {
         map.invalidateSize();
