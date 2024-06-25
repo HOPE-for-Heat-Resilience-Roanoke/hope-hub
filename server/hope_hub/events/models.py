@@ -113,6 +113,9 @@ class DownloadableFile(models.Model):
     engagement = models.ForeignKey(Engagement, on_delete=models.PROTECT)
     title = models.CharField(max_length=255)
     upload = models.FileField(upload_to=engagement_date_path)
+    is_audio = models.BooleanField("Audio", default=False, help_text="If checked, this file will appear with an audio player on the hub.")
+    statement = models.TextField("Connection to Community Resilience Statement", blank=True, help_text="Will appear as a block quote under the image.")
+    attribution = models.CharField("Attribution for Statement", max_length=255, blank=True, help_text="Will appear as the attribution for the connection to resilience statement (aka who said the statement).")
 
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     created = models.DateTimeField(auto_now_add=True)
@@ -122,6 +125,9 @@ class DownloadableFile(models.Model):
         return {
             "title": self.title,
             "upload": self.upload.url,
+            "is_audio": self.is_audio,
+            "attribution": self.attribution,
+            "statement": self.statement,
         }
 
     def __str__(self):

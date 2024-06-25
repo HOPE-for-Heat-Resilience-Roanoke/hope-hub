@@ -55,6 +55,9 @@ class EngagementDetailView(LoginRequiredMixin, DetailView):
             fields=[
                 "upload",
                 "title",
+                "is_audio",
+                "statement",
+                "attribution",
             ],
             extra=1
         )
@@ -184,6 +187,9 @@ class DownloadableFileCreateView(LoginRequiredMixin, SingleObjectMixin, View):
             fields=[
                 "upload",
                 "title",
+                "is_audio",
+                "statement",
+                "attribution",
             ])
         downloadablefile_formset = DownloadableFileInlineFormSet(
             request.POST,
