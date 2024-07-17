@@ -1,8 +1,11 @@
 <script>
   import ArtifactDetails from "$lib/components/ArtifactDetails.svelte";
+  import { selectedEngagement } from "$lib/stores.js";
 
   export let engagement;
 </script>
+
+<p class="mb-2 cursor-pointer underline" on:click={() => $selectedEngagement = null}>Back to list</p>
 
 <h2 class="font-bold py-2">{engagement.title}</h2>
 <p class="py-2">{engagement.relevant_location}</p>

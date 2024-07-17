@@ -19,7 +19,26 @@
   } from "$lib/stores.js";
 
   export let data;
-  const {engagements} = data;
+  const {engagements, engagementSlug} = data;
+  console.log("slug", engagementSlug)
+
+  if (engagementSlug) {
+    const answer = engagements.filter((e) => e.slug == engagementSlug);
+
+    if (answer.length > 0) {
+      const e = answer[0];
+
+      $past = e.conn_past;
+      $present = e.conn_present;
+      $future = e.conn_future;
+      $equity = e.comp_equity;
+      $community = e.comp_community;
+      $nature = e.comp_nature;
+      $environment = e.comp_environment;
+
+      $selectedEngagement = e;
+    }
+  }
 
   const initialBounds = L.latLngBounds(
       [37.24262844611252, -80.06080627441408], 
@@ -34,7 +53,6 @@
   }
 
   function handleClick(engagement) {
-    console.log("clicked on", engagement);
     $selectedEngagement = engagement;
   }
 
