@@ -4,6 +4,8 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 
+from autoslug import AutoSlugField
+
 
 class Place(models.Model):
     name = models.CharField(max_length=255)
@@ -22,6 +24,7 @@ class Engagement(models.Model):
     title = models.CharField(max_length=255, help_text="A name for your event/engagement/activity.")
     description = models.TextField(help_text="A short (2-3 sentence) explanation about what the event/engagement/activity was and its connection to heat resilience.")
     date = models.DateField(help_text="The date of the event/engagement/activity.")
+    slug = AutoSlugField(populate_from="title", null=True)
 
     place = models.ForeignKey(Place, on_delete=models.PROTECT, help_text="The relevant location for the event. Must be a specific place, not a region. Make sure to add the place before filling out this form.")
 
@@ -46,6 +49,7 @@ class Engagement(models.Model):
     def to_json(self):
         return {
             "title": self.title,
+            "slug": self.slug,
             "description": self.description,
             "date": self.date.isoformat(),
             "relevant_location": self.place.name,

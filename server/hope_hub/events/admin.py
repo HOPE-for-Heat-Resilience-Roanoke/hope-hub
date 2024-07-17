@@ -21,6 +21,7 @@ class PlaceAdmin(admin.ModelAdmin):
 class EngagementAdmin(admin.ModelAdmin):
     list_display = (
         'title',
+        'slug',
         'date',
         'approved',
         'created_by'

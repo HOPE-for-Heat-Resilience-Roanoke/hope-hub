@@ -51,6 +51,15 @@
       <p>Added by <strong>{{ engagement.created_by.username }}</strong> on {{ engagement.created }} (last updated {{ engagement.updated }})</p>
 
       <dl>
+        <dt>Status</dt>
+        <dd>
+          {% if engagement.approved %}
+            Currently public on the hub
+          {% else %}
+            Not yet published on the hub
+          {% endif %}
+        </dd>
+
         <dt>Added by</dt>
         <dd>{{ engagement.created_by.username }}</dd>
 
