@@ -18,9 +18,8 @@
     selectedEngagement,
   } from "$lib/stores.js";
 
-  export let data;
-  const {engagements, engagementSlug} = data;
-  console.log("slug", engagementSlug)
+  export let engagements;
+  export let engagementSlug;
 
   if (engagementSlug) {
     const answer = engagements.filter((e) => e.slug == engagementSlug);
@@ -70,6 +69,7 @@
 
   let loaded = false;
 </script>
+
 
 <svelte:window on:resize={resizeMap} on:load={() => (loaded = true)} />
 
