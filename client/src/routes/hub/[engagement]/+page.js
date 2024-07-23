@@ -1,3 +1,5 @@
+import engagements from "../../../../static/engagements.json";
+
 export const ssr = false;
 
 export const load = async ({fetch, params}) => {
@@ -11,3 +13,8 @@ export const load = async ({fetch, params}) => {
     engagementSlug,
   };
 };
+
+export const entries = () => {
+  return engagements.map((e) => ({engagement: e.slug}));
+}
+
