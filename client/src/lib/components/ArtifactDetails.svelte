@@ -3,7 +3,7 @@
 </script>
 
 <figure>
-  <img src="images/engagements{artifact.upload}" alt="{artifact.alt_text}" />
+  <img src="/images/engagements{artifact.upload}" alt="{artifact.alt_text}" />
   <figcaption class="text-sm">{artifact.alt_text}</figcaption>
 </figure>
 

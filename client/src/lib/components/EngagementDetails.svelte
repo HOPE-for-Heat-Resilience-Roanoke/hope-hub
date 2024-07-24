@@ -75,9 +75,9 @@
   {#each engagement.downloadablefiles as download}
     <h4 class="font-bold prose">{download.title}</h4>
     {#if download.is_audio}
-      <audio controls src="images/engagements{download.upload}"></audio>    
+      <audio controls src="/images/engagements{download.upload}"></audio>    
     {/if}
-    <a class="prose underline" download href="images/engagements{download.upload}">Download Here</a>
+    <a class="prose underline" download href="/images/engagements{download.upload}">Download Here</a>
     {#if download.statement}    
       <p class="mt-4">{download.statement}</p>
       {#if download.attribution}<p class="text-right text-sm mb-4">&mdash; {download.attribution}</p>{/if}
