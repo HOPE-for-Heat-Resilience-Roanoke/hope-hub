@@ -1,18 +1,50 @@
 [
-  "mccadden-park-design-game-with-community-members",
-  "hope-students-help-to-refine-design-of-park-design",
-  "hope-leadership-team-internal-building-workshop",
-  "hope-high-school-students-play-parks-planning-game",
-  "eureka-park-envision-the-future",
-  "jordan-bell-leads-hope-students-and-vt-students-on",
-  "antonio-stovall-leads-community-circle-on-learning",
-  "antonio-stovall-leads-community-circle-on-learning",
-  "kindness-stones",
-  "art-trees",
-  "art-trees",
-  "test-engagement",
-  "title",
-  "test-engagement",
-  "test-engagement",
-  "el-condor-pasa-i-envisioning-fruits"
+    {
+        "slug": "mccadden-park-design-game-with-community-members"
+    },
+    {
+        "slug": "hope-students-help-to-refine-design-of-park-design"
+    },
+    {
+        "slug": "hope-leadership-team-internal-building-workshop"
+    },
+    {
+        "slug": "hope-high-school-students-play-parks-planning-game"
+    },
+    {
+        "slug": "eureka-park-envision-the-future"
+    },
+    {
+        "slug": "jordan-bell-leads-hope-students-and-vt-students-on"
+    },
+    {
+        "slug": "antonio-stovall-leads-community-circle-on-learning"
+    },
+    {
+        "slug": "antonio-stovall-leads-community-circle-on-learning"
+    },
+    {
+        "slug": "kindness-stones"
+    },
+    {
+        "slug": "art-trees"
+    },
+    {
+        "slug": "art-trees"
+    },
+    {
+        "slug": "test-engagement"
+    },
+    {
+        "slug": "title"
+    },
+    {
+        "slug": "test-engagement"
+    },
+    {
+        "slug": "test-engagement"
+    },
+    {
+        "slug": "el-condor-pasa-i-envisioning-fruits"
+    }
 ]

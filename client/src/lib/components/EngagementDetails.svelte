@@ -1,11 +1,22 @@
 <script>
   import ArtifactDetails from "$lib/components/ArtifactDetails.svelte";
   import { selectedEngagement } from "$lib/stores.js";
+  import { page } from '$app/stores';
 
   export let engagement;
+
+  function copyPermalink() {
+    const permalink = $page.url.origin + "/hub/" + engagement.slug;
+
+    navigator.clipboard.writeText(permalink).then(function() {
+      console.log('Async: Copying to clipboard was successful!');
+    }, function(err) {
+      console.error('Async: Could not copy text: ', err);
+    });
+  }
 </script>
 
-<p class="mb-2 cursor-pointer underline" on:click={() => $selectedEngagement = null}>Back to list</p>
+<button class="mb-2 cursor-pointer underline" on:click={() => $selectedEngagement = null}>Back to list</button> | <button class="mb-2 cursor-pointer underline" on:click={copyPermalink}>Copy link</button>
 
 <h2 class="font-bold py-2">{engagement.title}</h2>
 <p class="py-2">{engagement.relevant_location}</p>
