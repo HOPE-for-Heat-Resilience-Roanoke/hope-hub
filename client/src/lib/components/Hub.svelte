@@ -95,7 +95,7 @@
     </MapFilters>
 
     <MapFilters name="Engagements">
-      <EngagementControls {filteredEngagements} />
+      <EngagementControls {engagements} {filteredEngagements} />
     </MapFilters>
 
   </section>
