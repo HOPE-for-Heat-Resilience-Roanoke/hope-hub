@@ -8,20 +8,8 @@
   export let engagements = [];
   export let filteredEngagements = [];
 
-  let value = "";
+  export let value;
 
-  $: options = engagements.map((e) => e.title);
-  $: listEngagements = buildListEngagements(value, filteredEngagements, engagements);
-
-  function buildListEngagements() {
-    if (value.length > 0 && filteredEngagements.length == 0) {
-      console.log("doing the right one ")
-      return engagements.filter((e) => e.title.toLowerCase().indexOf(value.toLowerCase()) !== -1);
-    } else if (value.length > 0) {
-      return filteredEngagements.filter((e) => e.title.toLowerCase().indexOf(value.toLowerCase()) !== -1);
-    }
-    return filteredEngagements;
-  }
 </script>
 
 <EngagementFilters />
@@ -29,12 +17,12 @@
 <form>
   <input type="text" name="engagement-search" placeholder="Search..." bind:value/>
 </form>
-<small>Listing {listEngagements.length} of {engagements.length} engagements</small>
+<small>Listing {filteredEngagements.length} of {engagements.length} engagements</small>
 
 {#if $selectedEngagement}
   <EngagementDetails engagement={$selectedEngagement} />
-{:else if listEngagements.length}
-  <EngagementList engagements={listEngagements} />
+{:else if filteredEngagements.length}
+  <EngagementList engagements={filteredEngagements} />
 {:else}
   <p class="px-12 mt-4 text-center">Use the search box or filters above to view engagements</p>
 {/if}

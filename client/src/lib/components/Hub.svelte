@@ -55,19 +55,32 @@
     $selectedEngagement = engagement;
   }
 
-  $: filteredEngagements = engagements.filter((e) => {
-    return (
-      ($past && e.conn_past) ||
-      ($present && e.conn_present) ||
-      ($future && e.conn_future) ||
-      ($equity && e.comp_equity) ||
-      ($community && e.comp_community) ||
-      ($nature && e.comp_nature) ||
-      ($environment && e.comp_environment)
-    );
-  })
+  let value = "";
+  $: filteredEngagements = searched(engagements.filter((e) => {
+      return (
+        ($past && e.conn_past) ||
+        ($present && e.conn_present) ||
+        ($future && e.conn_future) ||
+        ($equity && e.comp_equity) ||
+        ($community && e.comp_community) ||
+        ($nature && e.comp_nature) ||
+        ($environment && e.comp_environment)
+      );
+    }),
+    value
+  );
+
+  function searched(sublist, value) {
+    if (value.length > 0 && sublist.length == 0) {
+      return engagements.filter((e) => e.title.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+    } else if (value.length > 0) {
+      return sublist.filter((e) => e.title.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+    }
+    return sublist;
+  }
 
   let loaded = false;
+
 </script>
 
 
@@ -95,7 +108,7 @@
     </MapFilters>
 
     <MapFilters name="Engagements">
-      <EngagementControls {engagements} {filteredEngagements} />
+      <EngagementControls {engagements} {filteredEngagements} bind:value />
     </MapFilters>
 
   </section>
